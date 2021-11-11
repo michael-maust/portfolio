@@ -1,74 +1,28 @@
-import Styled from 'styled-components'
 import './App.css';
-import Test from './Components/test'
-
-
-const Wrapper = Styled.div `
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-p, a {
-
-  padding: 1rem;
-
-}
-
-.App-header {
-  background-color: #282c;
-  min-height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-
-`
-
+import Test from './Components/test';
 
 function App() {
   return (
-    <Wrapper>
+    // <Wrapper>
     <div className="App">
+      <div className=" flex flex-row">
+        <div className=" border-green-400 text-red-600  padding-10 ">One</div>
+        <div className="">Two</div>
+        <div className="">Three</div>
+        <div className="">Four</div>
+      </div>
+
       <header className="App-header">
-        
+        <div className="fixed top-10000 left-0 h-screen w-30 ">
+          <h3 className="">1</h3>
+          <h3 className="">1000</h3>
+          <h3 className="">1</h3>
+        </div>
 
-      <Test />
-
+        <Test />
       </header>
     </div>
-    </Wrapper>
+    // </Wrapper>
   );
 }
 
