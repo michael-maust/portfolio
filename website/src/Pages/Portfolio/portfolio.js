@@ -1,11 +1,43 @@
-import React from 'react'
+import React from 'react';
+import Styled from 'styled-components';
 
-const portfolio = () => {
-    return (
-        <div>
-            This is the portfolio page. 
-        </div>
-    )
+const Wrapper = Styled.div`
+
+body {
+    background-color: red;
 }
 
-export default portfolio
+padding-top: 100px;
+font-weight: 200px;
+display: flex;
+justify-content: center;
+width: 100%;
+  
+  background-color: ${props => props.theme.colors.charcoal};
+  font-family: ${props => props.theme.fonts.primary};
+
+
+h1 {
+    font-size: ${props => props.theme.fontSizes.large}
+
+}
+
+
+
+
+`;
+
+const portfolio = () => {
+  return (
+    <Wrapper>
+      <div>
+        <h1> This is the portfolio page.</h1>
+
+
+      </div>
+    </Wrapper>
+  );
+};
+
+export default portfolio;
+

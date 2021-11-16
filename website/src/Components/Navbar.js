@@ -15,53 +15,74 @@ import Portfolio from '../Pages/Portfolio/portfolio';
 import logo from '../media/cup.png';
 import '../App.css';
 
-
 // Component Styling
-
 
 const Wrapper = Styled.div`
 
 
-font-family: ${props => props.theme.fonts.primary};
-
 
 header {
+   
     position: fixed;
     width: 100%;
     top: 0px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: ${(props) => props.theme.colors.darkGray};
     
-    background-color: #403d39;
 }
 
 
 
 .nav-link, li {
     
-    
+    font-family: ${(props) => props.theme.fonts.primary};
     display: inline-block;
     padding: 10px 40px;
     transition: all 0.3s ease 0s;
     
     margin: 10px;
-    font-size: 1.3em;
-    font-weight: 200px;
+    font-size: 1.7em;
+    font-weight: 400px;
     text-decoration: none;
+    
   }
+
 
   a {
 
     text-decoration: none;
-    color: ${props => props.theme.colors.tan};
+    color: ${(props) => props.theme.colors.tan};
+    font-weight: bold;
    
   }
 
 
+a:hover {
+  color: ${(props) => props.theme.colors.orange};
+  transition: 500ms ease-out;
+}
+
+
+
   .active {
-    color: ${props => props.theme.colors.orange}
+    /* color: ${(props) => props.theme.colors.orange}; */
+    transition: 2s ease-out;
   }
+
+  .active:after {
+  content:""; 
+  float:left; 
+  background:${(props) => props.theme.colors.orange}; 
+  width:100%; 
+  height:6px; 
+  border-radius: 3px;
+  transition: background-color 2000ms ease-out;
+
+  }
+
+
 
 
 .nav-link {
@@ -72,7 +93,6 @@ header {
 
 
 .logo {
-
     height: 60px
 }
 

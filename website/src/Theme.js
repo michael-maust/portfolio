@@ -4,7 +4,7 @@ import {ThemeProvider} from 'styled-components';
 const theme = {
   colors: {
     charcoal: '#48484A',
-    darkGray: '#707070',
+    darkGray: '#3D3D3E',
     tan: '#FFE5D9',
     orange: '#E07A5F',
     blue: '#5C8084',
@@ -12,7 +12,7 @@ const theme = {
   },
 
   fonts: {
-    primary: 'Roboto',
+    primary: 'Nunito',
     secondary: 'Alegreya',
   },
   fontSizes: {

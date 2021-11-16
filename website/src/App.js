@@ -5,6 +5,15 @@ import Theme from './Theme'
 
 import Navbar from './Components/Navbar';
 
+const Wrapper = Styled.div`
+
+body {
+
+  background-color: red;
+
+}
+`
+
 
 
 function App() {

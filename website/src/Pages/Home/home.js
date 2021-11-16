@@ -1,22 +1,61 @@
 import React from 'react';
 import Styled from 'styled-components';
+import image from './portrait.svg';
 
 const Wrapper = Styled.div`
 
-padding-top: 100px;
-font-weight: 200px;
-display: flex;
-justify-content: center;
-width: 100%;
-  border: ${props => `1px solid ${props.theme.colors.lightBlue}`};
-  background-color: ${props => props.theme.colors.charcoal};
-  font-family: ${props => props.theme.fonts.primary};
+
+
+
+font-family: ${(props) => props.theme.fonts.primary};
+
+
+.welcome {
+padding-top: 150px;
+font-weight: bold;
+
+color: ${(props) => props.theme.colors.tan}
+
+
+}
+
+
+
+
+.centered {
+
+   display: flex;
+   align-items: center;
+   flex-direction: column
+
+
+}
+
+.portrait {
+
+  width: 300px;
+}
+
+
+
+
+
 
 
 h1 {
-    font-size: ${props => props.theme.fontSizes.large}
+ 
+  margin: 0;
+  font-size: ${(props) => props.theme.fontSizes.large}
+ 
 
 }
+
+p {
+  font-weight: bold;
+}
+
+
+
 
 
 
@@ -27,7 +66,10 @@ const home = () => {
   return (
     <Wrapper>
       <div>
-        <h1> This is the home page.</h1>
+        <section className="centered">
+          <h1 className="welcome"> WELCOME!</h1>
+          <img className="portrait" src={image} alt="portrait" />
+        </section>
 
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque
