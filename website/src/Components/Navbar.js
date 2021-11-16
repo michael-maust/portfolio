@@ -1,3 +1,4 @@
+// Dependency Imports
 import React from 'react';
 import {
   Route,
@@ -5,48 +6,63 @@ import {
   Routes,
   NavLink,
 } from 'react-router-dom';
-
 import Styled from 'styled-components';
+
+//  File Imports
 import Home from '../Pages/Home/home';
 import Blog from '../Pages/Blog/blog';
 import Portfolio from '../Pages/Portfolio/portfolio';
 import logo from '../media/cup.png';
+import '../App.css';
+
+
+// Component Styling
+
 
 const Wrapper = Styled.div`
 
-navbar {
-  position: -webkit-sticky;
-  position: sticky;
+
+font-family: ${props => props.theme.fonts.primary};
+
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     
-    padding: 30px 10%;
     background-color: #403d39;
-
-    
-
 }
 
+
+
 .nav-link, li {
+    
+    
     display: inline-block;
     padding: 10px 40px;
     transition: all 0.3s ease 0s;
-    border-radius: 20px;
-    background-color: #81b29a;
+    
     margin: 10px;
-  }
-
-
-li,
-  a,
-  button {
-    font-family: 'Poppins', sans-serif;
     font-size: 1.3em;
     font-weight: 200px;
     text-decoration: none;
-    color: white;
   }
+
+  a {
+
+    text-decoration: none;
+    color: ${props => props.theme.colors.tan};
+   
+  }
+
+
+  .active {
+    color: ${props => props.theme.colors.orange}
+  }
+
 
 .nav-link {
   list-style: none;
@@ -55,16 +71,10 @@ li,
 }
 
 
-p {
-
-  vertical-algin: middle;
-}
-
 .logo {
 
     height: 60px
 }
-
 
 
 `;
@@ -74,7 +84,7 @@ const Navbar = () => {
     <Router>
       <Wrapper>
         <div>
-          <navbar>
+          <header>
             <a href="/">
               <img className="logo" src={logo} alt="logo"></img>
             </a>
@@ -82,25 +92,25 @@ const Navbar = () => {
             <nav>
               <ul className="nav-links">
                 <li className="nav-link">
-                  <NavLink exact activeClassName="selected" to="/">
+                  <NavLink exact activeClassName="active" to="/">
                     HOME
                   </NavLink>
                 </li>
 
                 <li className="nav-link">
-                  <NavLink exact activeClassName="selected" to="/Blog">
+                  <NavLink exact activeClassName="active" to="/Blog">
                     BLOG
                   </NavLink>
                 </li>
 
                 <li className="nav-link">
-                  <NavLink exact activeClassName="selected" to="/Portfolio">
+                  <NavLink exact activeClassName="active" to="/Portfolio">
                     PORTFOLIO
                   </NavLink>
                 </li>
               </ul>
             </nav>
-          </navbar>
+          </header>
 
           <Routes>
             <Route exact path="/" element={<Home />} />

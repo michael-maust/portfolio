@@ -1,27 +1,23 @@
 import Styled from 'styled-components';
 import React from 'react';
 import './App.css';
-import Test from './Components/test';
+import Theme from './Theme'
+
 import Navbar from './Components/Navbar';
 
 
-const Wrapper = Styled.div`
-
-`;
 
 function App() {
   return (
-    <Wrapper>
+    <Theme>
       <div className="App">
        
 
         <Navbar />
 
-        {/* <Test /> */}
-
-        <header className="App-header"></header>
+    
       </div>
-    </Wrapper>
+    </Theme>
   );
 }
 
