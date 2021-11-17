@@ -22,11 +22,20 @@ import '../App.css';
 
 const Wrapper = Styled.div`
 
+
+
+
+
+
+
+
 @media only screen and (min-width: 1370px) {
 
+  .hamburger {
+    display: none;
+  }
 
-.hamburger {
-  display: none;
+
 }} 
 
 
@@ -82,7 +91,7 @@ header {
     display: inline-block;
     padding: 10px 20px;
     transition: all 0.3s ease 0s;
-    font-size: 1.7em;
+    font-size: 1.5rem;
     font-weight: 400px;
     text-decoration: none;
     
