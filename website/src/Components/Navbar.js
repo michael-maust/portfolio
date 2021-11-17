@@ -12,7 +12,7 @@ import Styled from 'styled-components';
 import Home from '../Pages/Home/home';
 import Blog from '../Pages/Blog/blog';
 import Portfolio from '../Pages/Portfolio/portfolio';
-import logo from '../media/cup.png';
+import logo from '../media/mmlogo.svg';
 import '../App.css';
 
 // Component Styling
@@ -20,17 +20,25 @@ import '../App.css';
 const Wrapper = Styled.div`
 
 
+.navbar {
+
+    
+}
 
 header {
-   
-    position: fixed;
-    width: 100%;
-    top: 0px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-top: 2rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: ${(props) => props.theme.colors.darkGray};
-    
+    border-radius: 25px;
+    height:100px;
 }
 
 
@@ -41,11 +49,12 @@ header {
     display: inline-block;
     padding: 10px 40px;
     transition: all 0.3s ease 0s;
-    
     margin: 10px;
     font-size: 1.7em;
     font-weight: 400px;
     text-decoration: none;
+    
+    
     
   }
 
@@ -61,7 +70,7 @@ header {
 
 a:hover {
   color: ${(props) => props.theme.colors.orange};
-  transition: 500ms ease-out;
+  transition: ease-in-out 500ms ;
 }
 
 
@@ -78,11 +87,11 @@ a:hover {
   width:100%; 
   height:6px; 
   border-radius: 3px;
-  transition: background-color 2000ms ease-out;
-
+  transition: background-color 2s ease-in-out;
+  z-index: 3;
+  
+  
   }
-
-
 
 
 .nav-link {
@@ -104,6 +113,8 @@ const Navbar = () => {
     <Router>
       <Wrapper>
         <div>
+          
+          <div className="navbar">
           <header>
             <a href="/">
               <img className="logo" src={logo} alt="logo"></img>
@@ -131,6 +142,7 @@ const Navbar = () => {
               </ul>
             </nav>
           </header>
+          </div>
 
           <Routes>
             <Route exact path="/" element={<Home />} />
