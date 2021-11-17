@@ -11,7 +11,7 @@ font-family: ${(props) => props.theme.fonts.primary};
 
 
 .welcome {
-padding-top: 150px;
+padding-top: 250px;
 font-weight: bold;
 
 color: ${(props) => props.theme.colors.tan}
@@ -43,36 +43,58 @@ h1 {
  
 }
 
-p:before {
+.bio::before {
   
   content:""; 
   margin-right: 20px;
   float:left; 
-  background:${(props) => props.theme.colors.tan}; 
+  background-color:${(props) => props.theme.colors.tan}; 
   width:15px; 
-  height:22rem; 
+  height:100%; 
   border-radius: 15px;
   transition: background-color 2s ease-in 2s ease-out;
   
 }
 
 
-.bio {
-  
-  width: 45%;
+.learnMore {
+  color:${(props) => props.theme.colors.orange}; 
   font-size: ${(props) => props.theme.fontSizes.medium};
-  color: ${(props) => props.theme.colors.tan};
+  font-weight: bold;
+  margin: 36px 0px 40px 36px;
+}
 
+p, .bio {
 
+  margin: 40px 0px 10px 0px;
 }
 
 
+
+
+.bio {
+  
+  height: 350px;
+  width: 530px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
+  color: ${(props) => props.theme.colors.tan};
+ 
+
+}
 
 
 .highlight {
   color: ${(props) => props.theme.colors.orange};
   font-weight: bold;
 }
+
+
+.container {
+
+  margin-bottom: 1000px;
+}
+
+
 
 
 `;
@@ -86,14 +108,24 @@ const home = () => {
           <img className="portrait" src={image} alt="portrait" />
 
             
+
+            <div className="container">
             <p className="bio">
               Hello! My name is{' '}
               <span className="highlight"> Michael Maust</span>. I am
               entrepreneur, engineer, and software developer. I believe in
               creating software and businesses that bring value to peoples’
               lives. I am very ambitious and driven to constantly improve and
-              learn more each and every day.
+              learn more each and every day. 
+              
             </p>
+            
+            <a className='learnMore' href="/About">Learn More </a>
+
+            </div>
+            
+
+
          
         </section>
       </div>

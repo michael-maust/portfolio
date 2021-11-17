@@ -10,9 +10,12 @@ import Styled from 'styled-components';
 
 //  File Imports
 import Home from '../Pages/Home/home';
+import About from '../Pages/About/about';
 import Blog from '../Pages/Blog/blog';
 import Portfolio from '../Pages/Portfolio/portfolio';
-import logo from '../media/mmlogo.svg';
+import Contact from '../Pages/Contact/contact';
+import logo from '../media/logo.svg';
+import searchIcon from '../media/searchIcon.svg';
 import '../App.css';
 
 // Component Styling
@@ -26,11 +29,13 @@ const Wrapper = Styled.div`
 }
 
 header {
-    position: -webkit-sticky;
-    position: sticky;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 999;
     top: 0;
     margin-top: 2rem;
-    width: 90%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -40,6 +45,11 @@ header {
     border-radius: 25px;
     height:100px;
 }
+
+
+
+
+
 
 
 
@@ -64,6 +74,7 @@ header {
     text-decoration: none;
     color: ${(props) => props.theme.colors.tan};
     font-weight: bold;
+    
    
   }
 
@@ -113,41 +124,60 @@ const Navbar = () => {
     <Router>
       <Wrapper>
         <div>
-          
           <div className="navbar">
-          <header>
-            <a href="/">
-              <img className="logo" src={logo} alt="logo"></img>
-            </a>
+            <header>
+              
 
-            <nav>
-              <ul className="nav-links">
-                <li className="nav-link">
-                  <NavLink exact activeClassName="active" to="/">
-                    HOME
-                  </NavLink>
-                </li>
+              {/* TODO: Prevent logo clicking from reloading entire page. Use Router correclty  */}
+              <a href="/">
+                <img className="logo" src={logo} alt="logo"></img>
+              </a>
 
-                <li className="nav-link">
-                  <NavLink exact activeClassName="active" to="/Blog">
-                    BLOG
-                  </NavLink>
-                </li>
+              <nav>
+                <ul className="nav-links">
+                  <li className="nav-link">
+                    <NavLink exact activeClassName="active" to="/">
+                      HOME
+                    </NavLink>
+                  </li>
 
-                <li className="nav-link">
-                  <NavLink exact activeClassName="active" to="/Portfolio">
-                    PORTFOLIO
-                  </NavLink>
-                </li>
-              </ul>
-            </nav>
-          </header>
+                  <li className="nav-link">
+                    <NavLink exact activeClassName="active" to="/About">
+                      ABOUT
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-link">
+                    <NavLink exact activeClassName="active" to="/Blog">
+                      BLOG
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-link">
+                    <NavLink exact activeClassName="active" to="/Portfolio">
+                      PORTFOLIO
+                    </NavLink>
+                  </li>
+
+                  <li className="nav-link">
+                    <NavLink exact activeClassName="active" to="/Contact">
+                      CONTACT
+                    </NavLink>
+                  </li>
+                </ul>
+              </nav>
+              <a href="">
+                <img className="searchIcon" src={searchIcon} alt="search"></img>
+              </a>
+            </header>
           </div>
 
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/Blog" element={<Blog />} />
             <Route exact path="/Portfolio" element={<Portfolio />} />
+            <Route exact path="/About" element={<About />} />
+            <Route exact path="/Contact" element={<Contact />} />
           </Routes>
         </div>
       </Wrapper>
