@@ -13,14 +13,15 @@ display: flex;
 justify-content: center;
 width: 100%;
   
-  background-color: ${props => props.theme.colors.charcoal};
-  font-family: ${props => props.theme.fonts.primary};
+  background-color: ${(props) => props.theme.colors.charcoal};
+  font-family: ${(props) => props.theme.fonts.primary};
 
 
 h1 {
-    font-size: ${props => props.theme.fontSizes.large}
+    font-size: ${(props) => props.theme.fontSizes.large}
 
 }
+
 
 
 
@@ -32,6 +33,9 @@ const blog = () => {
     <Wrapper>
       <div>
         <h1> This is the blog page.</h1>
+
+       
+
 
 
       </div>

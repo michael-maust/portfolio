@@ -22,6 +22,25 @@ import '../App.css';
 
 const Wrapper = Styled.div`
 
+@media only screen and (min-width: 1370px) {
+
+
+.hamburger {
+  display: none;
+}} 
+
+
+@media only screen and (max-width: 1370px) {
+
+
+  .nav-links, .search {
+    display: none;
+  }
+
+
+
+} 
+
 
 .navbar {
 
@@ -44,9 +63,13 @@ header {
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
     height:100px;
+    border: solid .5px black;
+    transition: all 0.5s;
+
+    &.toggleOff {
+      transform: translateY(-200px);
+    }
 }
-
-
 
 
 
@@ -57,15 +80,13 @@ header {
     
     font-family: ${(props) => props.theme.fonts.primary};
     display: inline-block;
-    padding: 10px 40px;
+    padding: 10px 20px;
     transition: all 0.3s ease 0s;
-    margin: 10px;
     font-size: 1.7em;
     font-weight: 400px;
     text-decoration: none;
     
-    
-    
+  
   }
 
 
@@ -112,12 +133,72 @@ a:hover {
 }
 
 
-.logo {
-    height: 60px
+.search {
+  margin-right: 20px; 
+}
+
+.logo  {
+    height: 70%;
+    margin-left: 20px;
+  
 }
 
 
+
+
+
+
+
+
+
+
+/* Hamburger Icon Styling */
+
+
+.hamburger {
+
+  margin-right: 20px;
+}
+
+.rect1 {
+ 
+ fill: ${(props) => props.theme.colors.tan};
+}
+
+.rect2 {
+
+ fill: ${(props) => props.theme.colors.tan};
+}
+
+.rect3 {
+
+fill: ${(props) => props.theme.colors.orange};
+}
+
+
+
+
+
+
+
+
+
 `;
+
+//Function that hides the header when scrolling down and reveals when scrolling up
+window.onscroll = function (e) {
+  let elem = document.getElementById('navbar');
+
+  //Will begin hiding header after scrolling 100px down.
+  if (this.scrollY > 100) {
+    if (this.oldScroll < this.scrollY) {
+      elem.classList.add('toggleOff');
+    } else {
+      elem.classList.remove('toggleOff');
+    }
+  }
+  this.oldScroll = this.scrollY;
+};
 
 const Navbar = () => {
   return (
@@ -125,9 +206,7 @@ const Navbar = () => {
       <Wrapper>
         <div>
           <div className="navbar">
-            <header>
-              
-
+            <header id="navbar">
               {/* TODO: Prevent logo clicking from reloading entire page. Use Router correclty  */}
               <a href="/">
                 <img className="logo" src={logo} alt="logo"></img>
@@ -167,8 +246,38 @@ const Navbar = () => {
                 </ul>
               </nav>
               <a href="">
-                <img className="searchIcon" src={searchIcon} alt="search"></img>
+                <img className="search" src={searchIcon} alt="search"></img>
               </a>
+
+              <svg
+                className="hamburger"
+                viewBox="0 0 100 80"
+                width="40"
+                height="40"
+              >
+                <rect
+                  className="rect1"
+                  y="0"
+                  width="100"
+                  height="15"
+                  rx="7"
+                ></rect>
+                <rect
+                  className="rect2"
+                  y="30"
+                  width="100"
+                  height="15"
+                  rx="7"
+                ></rect>
+                <rect
+                  className="rect3"
+                  y="60"
+                  x="30"
+                  width="70"
+                  height="15"
+                  rx="7"
+                ></rect>
+              </svg>
             </header>
           </div>
 

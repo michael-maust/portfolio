@@ -10,6 +10,8 @@ const Wrapper = Styled.div`
 font-family: ${(props) => props.theme.fonts.primary};
 
 
+
+
 .welcome {
 padding-top: 250px;
 font-weight: bold;
@@ -107,27 +109,26 @@ const home = () => {
           <h1 className="welcome"> WELCOME!</h1>
           <img className="portrait" src={image} alt="portrait" />
 
-            
-
-            <div className="container">
+          <div className="container">
             <p className="bio">
               Hello! My name is{' '}
               <span className="highlight"> Michael Maust</span>. I am
               entrepreneur, engineer, and software developer. I believe in
               creating software and businesses that bring value to peoples’
               lives. I am very ambitious and driven to constantly improve and
-              learn more each and every day. 
-              
+              learn more each and every day.
             </p>
-            
-            <a className='learnMore' href="/About">Learn More </a>
 
-            </div>
-            
-
-
-         
+            <a className="learnMore" href="/About">
+              Learn More{' '}
+            </a>
+          </div>
         </section>
+
+
+        
+
+
       </div>
     </Wrapper>
   );
