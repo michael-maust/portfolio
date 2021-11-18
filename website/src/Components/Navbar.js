@@ -29,26 +29,7 @@ const Wrapper = Styled.div`
 
 
 
-@media only screen and (min-width: 1370px) {
 
-  .hamburger {
-    display: none;
-  }
-
-
-}} 
-
-
-@media only screen and (max-width: 1370px) {
-
-
-  .nav-links, .search {
-    display: none;
-  }
-
-
-
-} 
 
 
 .navbar {
@@ -79,7 +60,6 @@ header {
       transform: translateY(-200px);
     }
 }
-
 
 
 
@@ -186,6 +166,34 @@ fill: ${(props) => props.theme.colors.orange};
 
 
 
+/* Responsive Style Changes */
+
+
+@media only screen and (min-width: 1370px) {
+
+.hamburger {
+  display: none;
+};
+
+
+};
+
+
+@media only screen and (max-width: 1370px) {
+
+
+.nav-links, .search {
+  display: none;
+};
+
+
+header {
+  width: 90%;
+  height: 70px;
+};
+
+
+}; 
 
 
 
