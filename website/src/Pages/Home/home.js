@@ -13,7 +13,7 @@ font-family: ${(props) => props.theme.fonts.primary};
 
 
 .welcome {
-padding-top: 250px;
+padding-top: 2500px;
 font-weight: bold;
 
 color: ${(props) => props.theme.colors.tan}

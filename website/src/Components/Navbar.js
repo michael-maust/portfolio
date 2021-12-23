@@ -16,6 +16,7 @@ import Portfolio from '../Pages/Portfolio/portfolio';
 import Contact from '../Pages/Contact/contact';
 import logo from '../media/logo.svg';
 import searchIcon from '../media/searchIcon.svg';
+import Burger from './Burger';
 import '../App.css';
 
 // Component Styling
@@ -24,41 +25,12 @@ const Wrapper = Styled.div`
 
 
 
-@media only screen and (max-width: 1023px) {
-
-
-  .nav-links, .search {
-    display: none;
-  }
-
-} 
-
-@media only screen and (min-width: 1024px)  {
-
-.hamburger {
-  display: none;
-}
-}} 
 
 
 
-@media only screen and (max-width: 1800px) {
-
-
-.header {
-  width: 620px;
-};
 
 
 
-} ;
-
-
-
-.navbar {
-
-    
-}
 
 header {
   position: fixed;
@@ -67,6 +39,7 @@ header {
   z-index: 999;
     top: 0;
     margin-top: 2rem;
+    max-height: 70px;
     width: 90%;
     max-width: 1400px; 
     margin-left: auto;
@@ -84,9 +57,6 @@ header {
       transform: translateY(-200px);
     }
 }
-
-
-
 
 
 .nav-link, li {
@@ -134,8 +104,6 @@ a:hover {
   border-radius: 3px;
   transition: background-color 2s ease-in-out;
   z-index: 3;
-  
-  
   }
 
 
@@ -148,6 +116,7 @@ a:hover {
 
 .search {
   margin-right: 20px; 
+  
 }
 
 .logo  {
@@ -158,66 +127,19 @@ a:hover {
 
 
 
+/* Responsive Design Breakpoints  */
 
-
-
-
-
-
-
-/* Hamburger Icon Styling */
-
-
-.hamburger {
-  margin-right: 20px;
-  height: 40px;
-  width: 40px;
-}
-
-.rect1 {
- 
- fill: ${(props) => props.theme.colors.tan};
-}
-
-.rect2 {
-
- fill: ${(props) => props.theme.colors.tan};
-}
-
-.rect3 {
-
-fill: ${(props) => props.theme.colors.orange};
-}
-
-
-
-/* Responsive Style Changes */
-
-
-@media only screen and (min-width: 1370px) {
-
+@media only screen and (min-width: 1024px) {
 .hamburger {
   display: none;
 };
 
 
 };
-
-
-@media only screen and (max-width: 1370px) {
-
-
+@media only screen and (max-width: 1023px) {
 .nav-links, .search {
   display: none;
 };
-
-
-header {
-  width: 90%;
-  height: 70px;
-};
-
-
 }; 
 
 
@@ -254,6 +176,10 @@ const Navbar = () => {
                 <img className="logo" src={logo} alt="logo"></img>
               </a>
 
+
+
+
+
               <nav>
                 <ul className="nav-links">
                   <li className="nav-link">
@@ -287,43 +213,18 @@ const Navbar = () => {
                   </li>
                 </ul>
               </nav>
-              <a href="">
-                <img className="search" src={searchIcon} alt="search"></img>
-              </a>
 
-              <svg
-                className="hamburger"
-                viewBox="0 0 100 80"
-                width="40"
-                height="40"
-              >
-                <rect
-                  className="rect1"
-                  y="0"
-                  width="100"
-                  height="15"
-                  rx="7"
-                ></rect>
-                <rect
-                  className="rect2"
-                  y="30"
-                  width="100"
-                  height="15"
-                  rx="7"
-                ></rect>
-                <rect
-                  className="rect3"
-                  y="60"
-                  x="30"
-                  width="70"
-                  height="15"
-                  rx="7"
-                ></rect>
-              </svg>
+
+
 
 
 
               
+              <a href="">
+                <img className="search" src={searchIcon} alt="search"></img>
+              </a>
+
+              <Burger />
             </header>
           </div>
 
@@ -334,6 +235,8 @@ const Navbar = () => {
             <Route exact path="/About" element={<About />} />
             <Route exact path="/Contact" element={<Contact />} />
           </Routes>
+
+
         </div>
       </Wrapper>
     </Router>
