@@ -6,13 +6,12 @@ import Styled from 'styled-components';
 //  File Imports
 
 import Menu from './Menu'
+import SideMenu from './sideMenu'
 import '../App.css';
 
 // Component Styling
 
 const Wrapper = Styled.div`
-
-
 
 
 /* Hamburger Icon Styling */
@@ -44,24 +43,7 @@ const Wrapper = Styled.div`
 fill: ${(props) => props.theme.colors.orange};
 }
 
-.burgerMenu {
-    z-index: 1;
-    color: red;
-    background-color: gray;
-    position: fixed;
-    top: 80px;
-    right: -10px;
-    
-    transform: ${({showMenu}) =>
-      showMenu ? 'translateX(0)' : 'translateX(-100%)'};
-  height: 100vh;
-  text-align: left;
-  padding: 2rem;
- 
-  transition: transform 0.9s ease-in-out;
 
-
-}
 
 
 
@@ -76,7 +58,9 @@ const Burger = () => {
   let menu;
 
   if (showMenu) {
-    menu = <Menu />
+    menu = <div className="sideMenu">
+        <SideMenu />
+    </div>
     
     
     
@@ -104,12 +88,12 @@ const Burger = () => {
           ></rect>
         </svg>
 
-
-
-
+        {menu}
       </div>
 
-      {menu}
+     
+
+
     </Wrapper>
   );
 };

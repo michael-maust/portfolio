@@ -15,6 +15,7 @@ import Blog from '../Pages/Blog/blog';
 import Portfolio from '../Pages/Portfolio/portfolio';
 import Contact from '../Pages/Contact/contact';
 import logo from '../media/logo.svg';
+import Menu from './Menu';
 import searchIcon from '../media/searchIcon.svg';
 import Burger from './Burger';
 import '../App.css';
@@ -27,30 +28,34 @@ const Wrapper = Styled.div`
 
 
 
-
-
-
+.navbarClass {
+  position: fixed;
+z-index: 500;
+width: 90%;
+margin-left: auto;
+    margin-right: auto;
+    right: 0;
+    left: 0;
+    top: 0;
+}
 
 
 header {
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 999;
-    top: 0;
+    position: relative;
+  
     margin-top: 2rem;
     max-height: 70px;
-    width: 90%;
+  
     max-width: 1400px; 
-    margin-left: auto;
-    margin-right: auto;
+    
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
-    height:100px;
     border: solid .5px black;
+    height:70px;
+    
     transition: all 0.5s;
 
     &.toggleOff {
@@ -68,18 +73,13 @@ header {
     font-size: 1.2rem;
     font-weight: 400px;
     text-decoration: none;
-    
-  
   }
 
 
   a {
-
     text-decoration: none;
     color: ${(props) => props.theme.colors.tan};
     font-weight: bold;
-    
-   
   }
 
 
@@ -121,23 +121,31 @@ a:hover {
 
 .logo  {
     height: 70%;
-    margin-left: 20px;
+    padding-left: 50px;
   
 }
+
+
+
+.burger {
+  padding-right: 50px;
+}
+
+
 
 
 
 /* Responsive Design Breakpoints  */
 
 @media only screen and (min-width: 1024px) {
-.hamburger {
+.burger {
   display: none;
 };
 
 
 };
 @media only screen and (max-width: 1023px) {
-.nav-links, .search {
+.mainMenu, .search {
   display: none;
 };
 }; 
@@ -169,62 +177,27 @@ const Navbar = () => {
     <Router>
       <Wrapper>
         <div>
-          <div className="navbar">
+          <div className="navbarClass">
+
+
+
             <header id="navbar">
               {/* TODO: Prevent logo clicking from reloading entire page. Use Router correclty  */}
               <a href="/">
                 <img className="logo" src={logo} alt="logo"></img>
               </a>
 
+              <div className="mainMenu">
+                <Menu />
+              </div>
 
-
-
-
-              <nav>
-                <ul className="nav-links">
-                  <li className="nav-link">
-                    <NavLink exact activeClassName="active" to="/">
-                      HOME
-                    </NavLink>
-                  </li>
-
-                  <li className="nav-link">
-                    <NavLink exact activeClassName="active" to="/About">
-                      ABOUT
-                    </NavLink>
-                  </li>
-
-                  <li className="nav-link">
-                    <NavLink exact activeClassName="active" to="/Blog">
-                      BLOG
-                    </NavLink>
-                  </li>
-
-                  <li className="nav-link">
-                    <NavLink exact activeClassName="active" to="/Portfolio">
-                      PORTFOLIO
-                    </NavLink>
-                  </li>
-
-                  <li className="nav-link">
-                    <NavLink exact activeClassName="active" to="/Contact">
-                      CONTACT
-                    </NavLink>
-                  </li>
-                </ul>
-              </nav>
-
-
-
-
-
-
-              
               <a href="">
                 <img className="search" src={searchIcon} alt="search"></img>
               </a>
 
-              <Burger />
+              <div className="burger">
+                <Burger />
+              </div>
             </header>
           </div>
 
@@ -235,8 +208,6 @@ const Navbar = () => {
             <Route exact path="/About" element={<About />} />
             <Route exact path="/Contact" element={<Contact />} />
           </Routes>
-
-
         </div>
       </Wrapper>
     </Router>
