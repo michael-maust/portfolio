@@ -98,6 +98,34 @@ p, .bio {
 
 
 
+/* Responsive Style Changes */
+
+/* Large/Desktop Screens */
+@media only screen and (min-width: 1370px) {
+
+
+
+};
+
+
+/* Small Screens */
+@media only screen and (max-width: 1370px) {
+
+.bio {
+  width: 300px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
+}
+
+.portrait {
+  width: 200px;
+}
+
+
+
+}; 
+
+
+
 
 `;
 
@@ -120,7 +148,7 @@ const home = () => {
             </p>
 
             <a className="learnMore" href="/About">
-              Learn More{' '}
+              Learn More
             </a>
           </div>
         </section>
