@@ -17,22 +17,14 @@ const Wrapper = Styled.div`
 }
 
 
-
-
-
 .menuLayout {
     z-index: -500;
-    background-color: gray;
     position: absolute;
-    top: 50%;
+    top: 0px;
     right: 0px;
     width: 100%;
-    max-width: 400px;
+    max-width: 380px;
     height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
     border: solid .5px black;
@@ -40,36 +32,49 @@ const Wrapper = Styled.div`
     
 
 .links {
+    padding-top: 80px;
+}
 
-    padding-top: 50px;
+
+.nav-links, .nav-link, .active, li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
 }
 
 
 
-.nav-link, li {
+
+
+
+.nav-links, .nav-link, li {
     
     font-family: ${(props) => props.theme.fonts.primary};
-    display: flex;
-    //flex-direction: column;
-    padding: 10px 20px;
+    padding: 10px 0px;
     transition: all 0.3s ease 0s;
     font-size: 2rem;
     font-weight: 400px;
     text-decoration: none;
-    
+
+  
   }
+
+
 
 
   a {
-
     text-decoration: none;
     color: ${(props) => props.theme.colors.tan};
     font-weight: bold;
+    padding: 7px 20px;
     
+
   }
 
 
-a:hover {
+a:hover:not(.active) {
   color: ${(props) => props.theme.colors.orange};
   transition: ease-in-out 500ms ;
 }
@@ -77,20 +82,24 @@ a:hover {
 
 
   .active {
-    /* color: ${(props) => props.theme.colors.orange}; */
-    transition: 2s ease-out;
+    transition: .5s ease-in-out;
+    border-radius: 25px;
+    background:${(props) => props.theme.colors.orange}; 
+    padding: 7px 20px;
+    position: relative;
+  
   }
 
-  .active:after {
+  /* .active:after {
   content:""; 
-  float:right; 
+  float:left; 
   background:${(props) => props.theme.colors.orange}; 
   width:100%; 
   height:6px; 
   border-radius: 3px;
   transition: background-color 2s ease-in-out;
   z-index: 3;
-  }
+  } */
 
 
 .nav-link {
@@ -104,15 +113,11 @@ a:hover {
 
 const sideMenu = () => {
   return (
-      
     <Wrapper>
-      
       <div className="menuLayout">
         <div className="links">
           <Menu />
-          
         </div>
-        
       </div>
       <div className="background"></div>
     </Wrapper>

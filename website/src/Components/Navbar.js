@@ -25,9 +25,6 @@ import '../App.css';
 const Wrapper = Styled.div`
 
 
-
-
-
 .navbarClass {
   position: fixed;
 z-index: 500;
@@ -62,6 +59,49 @@ header {
       transform: translateY(-200px);
     }
 }
+
+
+
+.search {
+  margin-right: 20px; 
+  
+}
+
+.logo  {
+    height: 70%;
+    padding-left: 50px;
+  
+}
+
+
+
+.burger {
+  padding-right: 50px;
+}
+
+
+
+
+
+/* Responsive Design Breakpoints  */
+
+@media only screen and (min-width: 1024px) {
+.burger {
+  display: none;
+};
+
+
+};
+@media only screen and (max-width: 1023px) {
+.mainMenu, .search {
+  display: none;
+};
+}; 
+
+
+`;
+
+const MenuStyle = Styled.div`
 
 
 .nav-link, li {
@@ -114,43 +154,6 @@ a:hover {
 }
 
 
-.search {
-  margin-right: 20px; 
-  
-}
-
-.logo  {
-    height: 70%;
-    padding-left: 50px;
-  
-}
-
-
-
-.burger {
-  padding-right: 50px;
-}
-
-
-
-
-
-/* Responsive Design Breakpoints  */
-
-@media only screen and (min-width: 1024px) {
-.burger {
-  display: none;
-};
-
-
-};
-@media only screen and (max-width: 1023px) {
-.mainMenu, .search {
-  display: none;
-};
-}; 
-
-
 
 
 
@@ -178,18 +181,17 @@ const Navbar = () => {
       <Wrapper>
         <div>
           <div className="navbarClass">
-
-
-
             <header id="navbar">
               {/* TODO: Prevent logo clicking from reloading entire page. Use Router correclty  */}
               <a href="/">
                 <img className="logo" src={logo} alt="logo"></img>
               </a>
 
-              <div className="mainMenu">
-                <Menu />
-              </div>
+              <MenuStyle>
+                <div className="mainMenu">
+                  <Menu />
+                </div>
+              </MenuStyle>
 
               <a href="">
                 <img className="search" src={searchIcon} alt="search"></img>

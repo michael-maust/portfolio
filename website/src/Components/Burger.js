@@ -5,13 +5,13 @@ import Styled from 'styled-components';
 
 //  File Imports
 
-import Menu from './Menu'
-import SideMenu from './sideMenu'
+import Menu from './Menu';
+import SideMenu from './sideMenu';
 import '../App.css';
 
 // Component Styling
 
-const Wrapper = Styled.div`
+const StyledBurger = Styled.div`
 
 
 /* Hamburger Icon Styling */
@@ -22,30 +22,51 @@ const Wrapper = Styled.div`
   height: 40px;
   width: 40px;
   cursor: pointer;
+  transform: ${(props) => (props.showMenu ? 'rotate(-45deg)' : 'rotate(0)')};
+  transition: all 0.3s linear;
+
+  &:hover, * {
+    fill: red;
+  }
  
 }
 
+
+
+
+
 .rect1 {
- 
+
  fill: ${(props) => props.theme.colors.tan};
- color: ${(showMenu) => showMenu ? 'rotate(45deg)' : 'rotate(0)'}
- transform: ${(showMenu) => showMenu ? 'rotate(45deg)' : 'rotate(0)'};
+ &:hover{
+   fill: red;
+   transition: all 0.3s linear;
+
+ }
 }
 
 .rect2 {
 
  fill: ${(props) => props.theme.colors.tan};
+ transition: all 0.6s linear;
+ &:hover{
+  transition: all 0.3s linear;
+   fill: red;
+ }
 
 }
 
 .rect3 {
 
 fill: ${(props) => props.theme.colors.orange};
+transform: ${(props) => (props.showMenu ? 'translateX(-30px)' : 'rotate(0)')};
+ transition: all 0.6s linear;
+
+ &:hover{
+  transition: all 0.3s linear;
+   fill: red;
+ }
 }
-
-
-
-
 
 
 
@@ -54,27 +75,29 @@ fill: ${(props) => props.theme.colors.orange};
 
 const Burger = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const handleClick = () => setShowMenu(!showMenu);
+  let test = 'this sucks';
 
   let menu;
 
   if (showMenu) {
-    menu = <div className="sideMenu">
+    menu = (
+      <div className="sideMenu">
         <SideMenu />
-    </div>
-    
-    
-    
+      </div>
+    );
   }
 
   return (
-    <Wrapper>
+    <StyledBurger showMenu={showMenu}>
+
       <div>
         <svg
           className="hamburger"
           viewBox="0 0 100 80"
           width="40"
           height="40"
-          onClick={() => setShowMenu(!showMenu)}
+          onClick={handleClick}
         >
           <rect className="rect1" y="0" width="100" height="15" rx="7"></rect>
           <rect className="rect2" y="30" width="100" height="15" rx="7"></rect>
@@ -90,11 +113,7 @@ const Burger = () => {
 
         {menu}
       </div>
-
-     
-
-
-    </Wrapper>
+    </StyledBurger>
   );
 };
 
