@@ -6,7 +6,7 @@ import Theme from './Theme'
 import Navbar from './Components/Navbar';
 // import Footer from './Components/footer';
 // import Menu from './Components/Menu';
-import SideMenu from './Components/sideMenu'
+
 
 const Wrapper = Styled.div`
 

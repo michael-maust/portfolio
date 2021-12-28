@@ -5,7 +5,6 @@ import Styled from 'styled-components';
 
 //  File Imports
 
-import Menu from './Menu';
 import SideMenu from './sideMenu';
 import '../App.css';
 
@@ -13,107 +12,103 @@ import '../App.css';
 
 const StyledBurger = Styled.div`
 
-
 /* Hamburger Icon Styling */
 
-
 .hamburger {
-  margin-right: 20px;
-  height: 40px;
-  width: 40px;
+  
   cursor: pointer;
+  transform-origin: center center;
   transform: ${(props) => (props.showMenu ? 'rotate(-45deg)' : 'rotate(0)')};
   transition: all 0.3s linear;
 
-  &:hover, * {
-    fill: red;
+  &:hover {
+    transform: ${(props) => (props.showMenu ? '' : 'scale(1.1)')};
+    transition: all 0.7s linear;
   }
- 
 }
 
-
-
+.rect {
+  width: 40px;
+  height: 6px;
+  border-radius: 10px;
+  margin: 7px 0px;
+  background-color: ${(props) => props.theme.colors.tan};
+}
 
 
 .rect1 {
-
- fill: ${(props) => props.theme.colors.tan};
- &:hover{
-   fill: red;
-   transition: all 0.3s linear;
-
- }
+ background-color: ${(props) => props.theme.colors.tan};
 }
 
 .rect2 {
-
- fill: ${(props) => props.theme.colors.tan};
- transition: all 0.6s linear;
- &:hover{
-  transition: all 0.3s linear;
-   fill: red;
- }
-
+ background-color: ${(props) => props.theme.colors.tan};
+ 
 }
 
 .rect3 {
-
-fill: ${(props) => props.theme.colors.orange};
-transform: ${(props) => (props.showMenu ? 'translateX(-30px)' : 'rotate(0)')};
- transition: all 0.6s linear;
-
- &:hover{
-  transition: all 0.3s linear;
-   fill: red;
- }
+  background-color: ${(props) => props.theme.colors.orange};
+  margin-right: 0px;
+  margin-left: auto;
+  width: 25px;
+  transform: ${(props) => (props.showMenu ? 'translateX(-10px)' : 'rotate(0)')};
+  transition: all 0.6s linear;
 }
 
 
+`;
 
+const Wrapper = Styled.div`
+
+
+
+
+.menuLayout {
+ 
+  top: 20px;
+  transition:  all 0.7s;
+  overflow: auto;
+  height: ${(props) => (props.showMenu ? '80vh' : '0')};
+
+
+  //Hide Scroll Bar
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  ::-webkit-scrollbar { 
+    display: none; /* Chrome Safari */
+} 
+}
 
 `;
 
 const Burger = () => {
   const [showMenu, setShowMenu] = useState(false);
   const handleClick = () => setShowMenu(!showMenu);
-  let test = 'this sucks';
 
-  let menu;
+  // let menu;
 
-  if (showMenu) {
-    menu = (
-      <div className="sideMenu">
-        <SideMenu />
-      </div>
-    );
-  }
+  // if (showMenu) {
+  //   menu = (
+  //     <div className="sideMenuAnimation">
+  //       <SideMenu showMenu={showMenu}/>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <StyledBurger showMenu={showMenu}>
+    <div>
+      <StyledBurger showMenu={showMenu}>
+        <div className="hamburger" onClick={handleClick}>
+          <div className="rect1 rect"></div>
+          <div className="rect2 rect"></div>
+          <div className="rect3 rect"></div>
+        </div>
+      </StyledBurger>
 
-      <div>
-        <svg
-          className="hamburger"
-          viewBox="0 0 100 80"
-          width="40"
-          height="40"
-          onClick={handleClick}
-        >
-          <rect className="rect1" y="0" width="100" height="15" rx="7"></rect>
-          <rect className="rect2" y="30" width="100" height="15" rx="7"></rect>
-          <rect
-            className="rect3"
-            y="60"
-            x="30"
-            width="70"
-            height="15"
-            rx="7"
-          ></rect>
-        </svg>
-
-        {menu}
-      </div>
-    </StyledBurger>
+      <Wrapper showMenu={showMenu}>
+        <SideMenu />
+      </Wrapper>
+    </div>
   );
 };
 

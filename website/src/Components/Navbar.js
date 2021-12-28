@@ -50,7 +50,7 @@ header {
     align-items: center;
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
-    border: solid .5px black;
+    /* border: solid .5px black; */
     height:70px;
     
     transition: all 0.5s;

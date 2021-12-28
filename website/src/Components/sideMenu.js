@@ -1,6 +1,8 @@
 import React from 'react';
 import Styled from 'styled-components';
 import Menu from './Menu';
+import SocialMediaLinks from './SocialMediaLinks';
+import ResumeButton from './ResumeButton';
 
 const Wrapper = Styled.div`
 
@@ -10,9 +12,10 @@ const Wrapper = Styled.div`
     left: -100px;
     width: 150vw;
     height: 200vh;
-    background-color: black;
+    background-color: ${(props) => props.theme.colors.darkGray};
     opacity: 40%;
     position: fixed;
+    
 
 }
 
@@ -23,20 +26,32 @@ const Wrapper = Styled.div`
     top: 0px;
     right: 0px;
     width: 100%;
-    max-width: 380px;
-    height: 85vh;
-    background-color: ${(props) => props.theme.colors.darkGray};
+    max-width: 340px;
+    background-color: ${(props) => props.theme.colors.charcoal};
     border-radius: 25px;
-    border: solid .5px black;
+    border: solid 5px ${(props) => props.theme.colors.darkGray};
+    
+    
+    
+
 }
     
 
+
+@media only screen and (max-width: 480px) {
+.menuLayout {
+  width: 100%;
+};
+}; 
+
+
 .links {
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 
-.nav-links, .nav-link, .active, li {
+.nav-links, .nav-link, .active, li, .resume {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -49,32 +64,30 @@ const Wrapper = Styled.div`
 
 
 
+
+
 .nav-links, .nav-link, li {
     
     font-family: ${(props) => props.theme.fonts.primary};
-    padding: 10px 0px;
+    padding: 5px 0px;
     transition: all 0.3s ease 0s;
-    font-size: 2rem;
+    font-size: 1.3em;
     font-weight: 400px;
     text-decoration: none;
+  }
 
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.tan};
+    font-weight: bold;
+    padding: 5px 20px;
   
   }
 
 
 
 
-  a {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.tan};
-    font-weight: bold;
-    padding: 7px 20px;
-    
-
-  }
-
-
-a:hover:not(.active) {
+a:hover:not(.active, .resume) {
   color: ${(props) => props.theme.colors.orange};
   transition: ease-in-out 500ms ;
 }
@@ -85,28 +98,32 @@ a:hover:not(.active) {
     transition: .5s ease-in-out;
     border-radius: 25px;
     background:${(props) => props.theme.colors.orange}; 
-    padding: 7px 20px;
+    padding: 5px 20px;
     position: relative;
   
   }
 
-  /* .active:after {
-  content:""; 
-  float:left; 
-  background:${(props) => props.theme.colors.orange}; 
-  width:100%; 
-  height:6px; 
-  border-radius: 3px;
-  transition: background-color 2s ease-in-out;
-  z-index: 3;
-  } */
-
-
+  
 .nav-link {
   list-style: none;
   text-decoration: none;
   font-weight: 200px;
 }
+
+
+hr {
+  margin-top: 10px;
+  width: 60%;
+  height: 5px;
+  background-color: ${(props) => props.theme.colors.darkGray};
+  border: none;
+  border-radius: 20px;
+  transform: ${(props) => (props.showMenu ? 'translateX(-10px)' : 'rotate(0)')};
+}
+
+
+
+
 
 
 `;
@@ -118,6 +135,12 @@ const sideMenu = () => {
         <div className="links">
           <Menu />
         </div>
+
+        <hr />
+
+        <SocialMediaLinks />
+
+        <ResumeButton />
       </div>
       <div className="background"></div>
     </Wrapper>
