@@ -4,7 +4,6 @@ import {
   Route,
   BrowserRouter as Router,
   Routes,
-  NavLink,
 } from 'react-router-dom';
 import Styled from 'styled-components';
 
@@ -26,10 +25,10 @@ const Wrapper = Styled.div`
 
 
 .navbarClass {
-  position: fixed;
-z-index: 500;
-width: 90%;
-margin-left: auto;
+    position: fixed;
+    z-index: 500;
+    width: 90%;
+    margin-left: auto;
     margin-right: auto;
     right: 0;
     left: 0;
@@ -39,20 +38,15 @@ margin-left: auto;
 
 header {
     position: relative;
-  
     margin-top: 2rem;
     max-height: 70px;
-  
     max-width: 1400px; 
-    
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
-    /* border: solid .5px black; */
     height:70px;
-    
     transition: all 0.5s;
 
     &.toggleOff {
@@ -78,9 +72,6 @@ header {
 .burger {
   padding-right: 50px;
 }
-
-
-
 
 
 /* Responsive Design Breakpoints  */
@@ -128,8 +119,6 @@ a:hover {
   transition: ease-in-out 500ms ;
 }
 
-
-
   .active {
     /* color: ${(props) => props.theme.colors.orange}; */
     transition: 2s ease-out;
@@ -154,11 +143,10 @@ a:hover {
 }
 
 
-
-
-
-
 `;
+
+
+
 
 //Function that hides the header when scrolling down and reveals when scrolling up
 window.onscroll = function (e) {
@@ -174,6 +162,13 @@ window.onscroll = function (e) {
   }
   this.oldScroll = this.scrollY;
 };
+
+
+
+
+
+
+
 
 const Navbar = () => {
   return (

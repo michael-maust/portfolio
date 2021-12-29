@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  NavLink,
-} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Styled from 'styled-components';
 
 const Wrapper = Styled.div`
@@ -12,9 +7,6 @@ const Wrapper = Styled.div`
 
 
 `;
-
-
-
 
 const Menu = () => {
   return (

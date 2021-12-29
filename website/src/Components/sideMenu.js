@@ -1,5 +1,7 @@
 import React from 'react';
 import Styled from 'styled-components';
+
+import {toggleMenu} from './Burger';
 import Menu from './Menu';
 import SocialMediaLinks from './SocialMediaLinks';
 import ResumeButton from './ResumeButton';
@@ -15,12 +17,12 @@ const Wrapper = Styled.div`
     background-color: ${(props) => props.theme.colors.darkGray};
     opacity: 40%;
     position: fixed;
-    
 
 }
 
 
 .menuLayout {
+    box-sizing: border-box;
     z-index: -500;
     position: absolute;
     top: 0px;
@@ -31,16 +33,17 @@ const Wrapper = Styled.div`
     border-radius: 25px;
     border: solid 5px ${(props) => props.theme.colors.darkGray};
     
-    
-    
-
 }
     
 
 
 @media only screen and (max-width: 480px) {
 .menuLayout {
+  box-sizing: border-box;
+  max-width: 480px;
   width: 100%;
+  
+  
 };
 }; 
 
@@ -58,13 +61,6 @@ const Wrapper = Styled.div`
   align-items: center;
 
 }
-
-
-
-
-
-
-
 
 .nav-links, .nav-link, li {
     
@@ -84,15 +80,10 @@ const Wrapper = Styled.div`
   
   }
 
-
-
-
-a:hover:not(.active, .resume) {
+a:hover:not(.active) {
   color: ${(props) => props.theme.colors.orange};
   transition: ease-in-out 500ms ;
 }
-
-
 
   .active {
     transition: .5s ease-in-out;
@@ -123,9 +114,6 @@ hr {
 
 
 
-
-
-
 `;
 
 const sideMenu = () => {
@@ -139,10 +127,8 @@ const sideMenu = () => {
         <hr />
 
         <SocialMediaLinks />
-
         <ResumeButton />
       </div>
-      <div className="background"></div>
     </Wrapper>
   );
 };

@@ -15,7 +15,7 @@ const StyledBurger = Styled.div`
 /* Hamburger Icon Styling */
 
 .hamburger {
-  
+  position: relative;
   cursor: pointer;
   transform-origin: center center;
   transform: ${(props) => (props.showMenu ? 'rotate(-45deg)' : 'rotate(0)')};
@@ -26,6 +26,7 @@ const StyledBurger = Styled.div`
     transition: all 0.7s linear;
   }
 }
+
 
 .rect {
   width: 40px;
@@ -42,7 +43,6 @@ const StyledBurger = Styled.div`
 
 .rect2 {
  background-color: ${(props) => props.theme.colors.tan};
- 
 }
 
 .rect3 {
@@ -50,7 +50,7 @@ const StyledBurger = Styled.div`
   margin-right: 0px;
   margin-left: auto;
   width: 25px;
-  transform: ${(props) => (props.showMenu ? 'translateX(-10px)' : 'rotate(0)')};
+  transform: ${(props) => (props.showMenu ? 'translateX(-13px)' : 'rotate(0)')};
   transition: all 0.6s linear;
 }
 
@@ -59,11 +59,24 @@ const StyledBurger = Styled.div`
 
 const Wrapper = Styled.div`
 
-
+.background {
+  visibility: ${(props) => (props.showMenu ? '' : 'hidden')};
+  z-index: -600;
+    top: -100px;
+    left: -100px;
+    width: 150vw;
+    height: 200vh;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    opacity: 40%;
+    position: fixed;
+    
+}
 
 
 .menuLayout {
- 
+  
+  right: 0;
+  
   top: 20px;
   transition:  all 0.7s;
   overflow: auto;
@@ -79,26 +92,37 @@ const Wrapper = Styled.div`
 } 
 }
 
+
+
+
+
+
 `;
 
 const Burger = () => {
+  //State that toggle the mobile menu
   const [showMenu, setShowMenu] = useState(false);
-  const handleClick = () => setShowMenu(!showMenu);
+  const toggleMenu = () => setShowMenu(!showMenu);
+  const toggleMenuOff = () => setShowMenu(false);
 
-  // let menu;
+  //Toggle mobile menu off upon scrolling
 
-  // if (showMenu) {
-  //   menu = (
-  //     <div className="sideMenuAnimation">
-  //       <SideMenu showMenu={showMenu}/>
-  //     </div>
-  //   );
-  // }
+  window.addEventListener('scroll', toggleMenuOff);
+  window.addEventListener('resize', toggleMenuOff);
+
+
+
+
+  const navLinks = document.querySelector('li');
+ 
+
+
+  navLinks.addEventListener('click', toggleMenuOff);
 
   return (
     <div>
       <StyledBurger showMenu={showMenu}>
-        <div className="hamburger" onClick={handleClick}>
+        <div className="hamburger" onClick={toggleMenu}>
           <div className="rect1 rect"></div>
           <div className="rect2 rect"></div>
           <div className="rect3 rect"></div>
@@ -106,7 +130,12 @@ const Burger = () => {
       </StyledBurger>
 
       <Wrapper showMenu={showMenu}>
+
+       
         <SideMenu />
+        
+
+        <div className="background" onClick={toggleMenu}></div>
       </Wrapper>
     </div>
   );

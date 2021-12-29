@@ -17,17 +17,12 @@ body {
 }
 `
 
-
-
 function App() {
   return (
     <Theme>
       <div className="App">
        
-     
-
         <Navbar />
-       
        
         {/* <Footer /> */}
 
