@@ -2,12 +2,31 @@ import React from 'react';
 import Styled from 'styled-components';
 import image from './portrait.svg';
 
+
+// File Imports
+import WisdomGenerator from './WisdomGenerator';
+
+
+
 const Wrapper = Styled.div`
+
+
+
+.homePage {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+
+}
 
 
 
 
 font-family: ${(props) => props.theme.fonts.primary};
+
 
 
 
@@ -132,7 +151,7 @@ p, .bio {
 const home = () => {
   return (
     <Wrapper>
-      <div>
+      <div className='homePage'>
         <section className="centered">
           <h1 className="welcome"> WELCOME!</h1>
           <img className="portrait" src={image} alt="portrait" />
@@ -152,6 +171,9 @@ const home = () => {
             </a>
           </div>
         </section>
+
+          <WisdomGenerator />
+
 
 
         

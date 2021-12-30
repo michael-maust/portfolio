@@ -110,14 +110,10 @@ const Burger = () => {
   window.addEventListener('scroll', toggleMenuOff);
   window.addEventListener('resize', toggleMenuOff);
 
+  const navLinks = document.querySelector('menuLayout');
+  console.log(navLinks);
 
-
-
-  const navLinks = document.querySelector('li');
- 
-
-
-  navLinks.addEventListener('click', toggleMenuOff);
+  // navLinks.addEventListener('click', toggleMenuOff);
 
   return (
     <div>
@@ -130,10 +126,7 @@ const Burger = () => {
       </StyledBurger>
 
       <Wrapper showMenu={showMenu}>
-
-       
         <SideMenu />
-        
 
         <div className="background" onClick={toggleMenu}></div>
       </Wrapper>

@@ -5,10 +5,14 @@ const Wrapper = styled.div`
 
   a {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     justify-content: center;
     display: flex;
     
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.tan};
+    font-weight: bold;
+    padding: 5px 20px;
     
   }
 
@@ -17,12 +21,29 @@ const Wrapper = styled.div`
     background-color: ${(props) => props.theme.colors.blue};
     border-radius: 10px 30px 10px 30px;
 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+
     &:hover {
       transform: scale(1.1);
       transition: ease-in-out 500ms;
       color: ${(props) => props.theme.colors.tan};
     }
   }
+
+
+ 
+
+
+
+
+
+
+
 `;
 
 const ResumeButton = () => {

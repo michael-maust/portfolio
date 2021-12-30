@@ -9,11 +9,12 @@ const theme = {
     orange: '#E07A5F',
     blue: '#5C8084',
     lightBlue: '#929AA2',
+    green: '#5C846A'
   },
 
   fonts: {
     primary: 'Nunito',
-    secondary: 'Alegreya',
+    secondary: 'Alegreya'
   },
   fontSizes: {
     small: '1em',

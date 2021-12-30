@@ -1,16 +1,10 @@
 // Dependency Imports
 import React from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  NavLink,
-} from 'react-router-dom';
 import Styled from 'styled-components';
 
 //  File Imports
-
-import '../App.css';
+import SocialMediaLinks from './SocialMediaLinks';
+import ResumeButton from './ResumeButton';
 
 // Component Styling
 
@@ -24,24 +18,28 @@ const Wrapper = Styled.div`
 
 .footer {
 
-       
-        bottom: 0;
+        position: relative;
+        bottom: 0px;
         width: 100%;
-        height: 300px;
+        height: auto;
         background-color: ${(props) => props.theme.colors.darkGray};
         margin-left: auto;
         margin-right: auto;
         display: flex;
+        flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        border-radius: 50px 50px 0px 0px;
- 
-    
-   
+        
 }
 
 
+.copyright {
 
+  font-family: ${(props) => props.theme.fonts.primary};
+  font-size: 1.0em;
+    font-weight: 400px;
+    color: ${(props) => props.theme.colors.tan};
+}
 
 
 
@@ -56,11 +54,13 @@ const Wrapper = Styled.div`
 
 const footer = () => {
   return (
-    <Router>
-      <Wrapper>
-        <div className="footer">hello world</div>
-      </Wrapper>
-    </Router>
+    <Wrapper>
+      <div className="footer">
+        <SocialMediaLinks />
+        <ResumeButton />
+        <p className="copyright">© 2021 Michael Maust</p>
+      </div>
+    </Wrapper>
   );
 };
 

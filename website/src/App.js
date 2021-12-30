@@ -4,8 +4,8 @@ import './App.css';
 import Theme from './Theme'
 
 import Navbar from './Components/Navbar';
-// import Footer from './Components/footer';
-// import Menu from './Components/Menu';
+import Footer from './Components/footer';
+
 
 
 const Wrapper = Styled.div`
@@ -24,7 +24,7 @@ function App() {
        
         <Navbar />
        
-        {/* <Footer /> */}
+        <Footer />
 
     
       </div>
