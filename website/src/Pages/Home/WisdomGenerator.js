@@ -121,6 +121,7 @@ const Wrapper = styled.div`
   hr {
     position: relative;
     margin-top: 30px;
+    max-width: 80px;
     width: 10vw;
     height: 5px;
     background-color: ${(props) => props.theme.colors.darkGray};

@@ -10,24 +10,29 @@ import Footer from './Components/footer';
 
 const Wrapper = Styled.div`
 
-body {
 
-  background-color: red;
+.App {
 
-}
+
+
+
+
+
 `
 
 function App() {
   return (
     <Theme>
+       <Wrapper> 
       <div className="App">
-       
+     
         <Navbar />
-       
+        <div className="test">Hello world</div>
         <Footer />
 
-    
+        
       </div>
+      </Wrapper>
     </Theme>
   );
 }

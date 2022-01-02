@@ -1,38 +1,34 @@
 // Dependency Imports
-import React from 'react';
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from 'react-router-dom';
-import Styled from 'styled-components';
+import React from "react";
+import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import Styled from "styled-components";
 
 //  File Imports
-import Home from '../Pages/Home/home';
-import About from '../Pages/About/about';
-import Blog from '../Pages/Blog/blog';
-import Portfolio from '../Pages/Portfolio/portfolio';
-import Contact from '../Pages/Contact/contact';
-import logo from '../media/logo.svg';
-import Menu from './Menu';
-import searchIcon from '../media/searchIcon.svg';
-import Burger from './Burger';
-import '../App.css';
+import Home from "../Pages/Home/home";
+import About from "../Pages/About/about";
+import Blog from "../Pages/Blog/blog";
+import Portfolio from "../Pages/Portfolio/portfolio";
+import Contact from "../Pages/Contact/contact";
+import logo from "../media/logo.svg";
+import Menu from "./Menu";
+import searchIcon from "../media/searchIcon.svg";
+import Burger from "./Burger";
+import "../App.css";
 
 // Component Styling
 
 const Wrapper = Styled.div`
-
-
+      
 .navbarClass {
-    position: fixed;
-    z-index: 500;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    right: 0;
-    left: 0;
-    top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center; 
+  align-items: center; 
+  z-index: 500; 
 }
 
 
@@ -40,6 +36,7 @@ header {
     position: relative;
     margin-top: 2rem;
     max-height: 70px;
+    width: 90vw;
     max-width: 1400px; 
     display: flex;
     justify-content: space-between;
@@ -54,10 +51,8 @@ header {
     }
 }
 
-
-
 .search {
-  margin-right: 20px; 
+  margin-right: 50px; 
   
 }
 
@@ -66,8 +61,6 @@ header {
     padding-left: 50px;
   
 }
-
-
 
 .burger {
   padding-right: 50px;
@@ -120,7 +113,6 @@ a:hover {
 }
 
   .active {
-    /* color: ${(props) => props.theme.colors.orange}; */
     transition: 2s ease-out;
   }
 
@@ -145,30 +137,20 @@ a:hover {
 
 `;
 
-
-
-
 //Function that hides the header when scrolling down and reveals when scrolling up
 window.onscroll = function (e) {
-  let elem = document.getElementById('navbar');
+  let elem = document.getElementById("navbar");
 
   //Will begin hiding header after scrolling 100px down.
   if (this.scrollY > 100) {
     if (this.oldScroll < this.scrollY) {
-      elem.classList.add('toggleOff');
+      elem.classList.add("toggleOff");
     } else {
-      elem.classList.remove('toggleOff');
+      elem.classList.remove("toggleOff");
     }
   }
   this.oldScroll = this.scrollY;
 };
-
-
-
-
-
-
-
 
 const Navbar = () => {
   return (
