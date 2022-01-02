@@ -29,6 +29,7 @@ const Wrapper = Styled.div`
   justify-content: center; 
   align-items: center; 
   z-index: 500; 
+  
 }
 
 
@@ -45,6 +46,7 @@ header {
     border-radius: 25px;
     height:70px;
     transition: all 0.5s;
+    box-shadow: ${(props) => props.theme.shadow.box};
 
     &.toggleOff {
       transform: translateY(-200px);

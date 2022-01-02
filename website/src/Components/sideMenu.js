@@ -32,7 +32,9 @@ const Wrapper = Styled.div`
     background-color: ${(props) => props.theme.colors.charcoal};
     border-radius: 25px;
     border: solid 5px ${(props) => props.theme.colors.darkGray};
-    max-height: 570px;;
+    max-height: 570px;
+   
+    
     
 }
     
@@ -105,6 +107,7 @@ a:hover:not(.active) {
 
 hr {
   margin-top: 10px;
+  margin-bottom: 0px;
   width: 60%;
   height: 5px;
   background-color: ${(props) => props.theme.colors.darkGray};
@@ -112,6 +115,10 @@ hr {
   border-radius: 20px;
   transform: ${(props) => (props.showMenu ? 'translateX(-10px)' : 'rotate(0)')};
 }
+
+
+
+
 
 
 

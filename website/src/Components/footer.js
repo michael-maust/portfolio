@@ -30,6 +30,7 @@ const Wrapper = Styled.div`
         justify-content: space-around;
         align-items: center;
         
+        
 }
 
 
@@ -58,7 +59,7 @@ const footer = () => {
       <div className="footer">
         <SocialMediaLinks />
         <ResumeButton />
-        <p className="copyright">© 2021 Michael Maust</p>
+        <p className="copyright">© 2022 Michael Maust</p>
       </div>
     </Wrapper>
   );

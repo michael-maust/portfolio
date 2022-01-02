@@ -92,6 +92,7 @@ padding: 50px 0px 100px 0px;
       width: min(70%, 400px );
       padding: 0px;
       margin: 0px;
+      
     };
   
 

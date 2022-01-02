@@ -63,7 +63,7 @@ const Wrapper = Styled.div`
   visibility: ${(props) => (props.showMenu ? '' : 'hidden')};
   z-index: -600;
     top: -100px;
-    left: -100px;
+    left: -100px; 
     width: 150vw;
     height: 200vh;
     background-color: ${(props) => props.theme.colors.darkGray};
@@ -76,11 +76,10 @@ const Wrapper = Styled.div`
 .menuLayout {
   
   right: 0;
-  
   top: 20px;
   transition:  all 0.7s;
   overflow: auto;
-  height: ${(props) => (props.showMenu ? '80vh' : '0')};
+  height: ${(props) => (props.showMenu ? '90vh' : '0')};
 
 
   //Hide Scroll Bar
