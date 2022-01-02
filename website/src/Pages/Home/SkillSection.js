@@ -133,8 +133,8 @@ const ModalStyle = styled.div`
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
-    background-color: ${(props) => props.theme.colors.darkGray};
-    opacity: 60%;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
    
   }
 
@@ -142,27 +142,32 @@ const ModalStyle = styled.div`
     position: fixed;
     background: ${(props) => props.theme.colors.charcoal};
     box-shadow: ${(props) => props.theme.shadow.box};
+    
     height: auto;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     border-radius: 25px;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 40px 20px;
     
     
   }
 
   .toggleOffButton {
     position: absolute;
-    font-size: 20px;
-    right: 18px;
-    top: 10px;
-    color: white;
+    right: 30px;
+    bottom: 30px;
+    fill: ${(props) => props.theme.colors.darkGray};
     cursor: pointer;
+    
+
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 
 .rowFlex {
-
+  
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -212,7 +217,9 @@ const ModalStyle = styled.div`
   .modalSkillDescription {
     position: relative;
     color: ${(props) => props.theme.colors.tan};
-    font-weight: bold;
+    
+    font-size: 1.4rem;
+    
     
     top: -20px;
 
@@ -272,13 +279,14 @@ const SkillSection = () => {
         <div className="experienceModal">
           <div className="modalBackground" onClick={() => modalGenerator(false, 0)}></div>
             <div className="modalContainer">
-              <div
-                className="toggleOffButton"
-                onClick={() => modalGenerator(false, 0)}
-              >
-                X
-              </div>
 
+
+            <svg className="toggleOffButton"
+                onClick={() => modalGenerator(false, 0)}xmlns="http://www.w3.org/2000/svg" width="30.008" height="30" viewBox="0 0 30.008 30"><path d="M29.845,26.289,40.562,15.571a2.511,2.511,0,0,0-3.552-3.552L26.293,22.737,15.575,12.019a2.511,2.511,0,1,0-3.552,3.552L22.741,26.289,12.024,37.006a2.511,2.511,0,0,0,3.552,3.552L26.293,29.84,37.011,40.558a2.511,2.511,0,0,0,3.552-3.552Z" transform="translate(-11.285 -11.289)"/></svg>
+
+
+
+              
 
               <container className="rowFlex">
               

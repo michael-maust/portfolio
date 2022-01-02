@@ -66,10 +66,10 @@ const Wrapper = Styled.div`
     left: -100px; 
     width: 150vw;
     height: 200vh;
-    background-color: ${(props) => props.theme.colors.darkGray};
-    opacity: 40%;
+    background-color: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
     position: fixed;
-    
+   
 }
 
 
