@@ -9,6 +9,7 @@ import Styled from 'styled-components';
 // File Imports
 import WisdomGenerator from './WisdomGenerator';
 import BioSection from './BioSection';
+import SkillSection from './SkillSection'
 
 
 const Wrapper = Styled.div`
@@ -57,6 +58,7 @@ const home = () => {
 
           
     <BioSection />
+    <SkillSection />
 
       <WisdomGenerator />
     </Wrapper>
