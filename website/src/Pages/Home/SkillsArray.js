@@ -62,7 +62,7 @@ const skillsArray = [
     icon: ProjectManagementIcon,
     name: "Project Management",
     experience: "4+ Years",
-    description: "I am highly experienced with agile principles and project management. My largest project to date was helping expand a company to a second location (during a Pandemic). I have also managed teams of 12+ people. ",
+    description: "I am highly experienced with agile principles and project management. My largest project to date was helping expand a company to a second location (during a pandemic). I have also managed teams of 12+ people. ",
   },
   {
     index: 7,

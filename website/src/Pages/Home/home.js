@@ -23,7 +23,7 @@ const Wrapper = Styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 80%;
+
   margin-left: auto;
   margin-right: auto;
   

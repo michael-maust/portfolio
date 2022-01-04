@@ -8,6 +8,15 @@ import Styled from 'styled-components';
 import SideMenu from './sideMenu';
 import '../App.css';
 
+
+
+const orangeColor = (props) => props.theme.colors.orange;
+const blueColor = (props) => props.theme.colors.blue;
+
+
+
+
+
 // Component Styling
 
 const StyledBurger = Styled.div`
@@ -46,12 +55,12 @@ const StyledBurger = Styled.div`
 }
 
 .rect3 {
-  background-color: ${(props) => props.theme.colors.orange};
+  background-color: ${(props) => (props.showMenu ? blueColor : orangeColor)};
   margin-right: 0px;
   margin-left: auto;
   width: 25px;
   transform: ${(props) => (props.showMenu ? 'translateX(-13px)' : 'rotate(0)')};
-  transition: all 0.6s linear;
+  transition: all 0.6s ease-in-out;
 }
 
 

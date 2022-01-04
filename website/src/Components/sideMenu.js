@@ -10,10 +10,9 @@ const Wrapper = Styled.div`
 
 .background {
     z-index: -600;
-    top: -100px;
-    left: -100px;
-    width: 150vw;
-    height: 200vh;
+    
+    width: 100vw;
+    height: 100vh;
     background-color: ${(props) => props.theme.colors.darkGray};
     opacity: 40%;
     position: fixed;

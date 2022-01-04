@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 100px 0px 300px 0px;
+  padding: 0px 0px 30vh 0px;
 
   height: auto;
 

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 100px 0px 300px 0px;
+  padding: 0px 0px 30vh 0px;
   width: 100%;
   height: auto;
 
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     width: max(50%, 250px);
     max-width: 300px;
     margin: 20px 20px 20px 20px;
+   
   }
 
   .topContainer {

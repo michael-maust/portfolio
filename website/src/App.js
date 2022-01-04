@@ -8,10 +8,11 @@ import Footer from './Components/footer';
 
 
 
+
 const Wrapper = Styled.div`
 
 
-.App {
+.app {
 
   user-select: none; /* supported by Chrome and Opera */
    -webkit-user-select: none; /* Safari */
@@ -19,16 +20,15 @@ const Wrapper = Styled.div`
    -moz-user-select: none; /* Firefox */
    -ms-user-select: none; /* Internet Explorer/Edge */
 
+`;
 
 
-
-`
 
 function App() {
   return (
     <Theme>
        <Wrapper> 
-      <div className="App">
+      <div className="app">
      
         <Navbar />
         <div className="test">Hello world</div>

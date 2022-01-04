@@ -22,20 +22,23 @@ const Wrapper = Styled.div`
 .navbarClass {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 0px;
+  width: 100vw;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center; 
   align-items: center; 
   z-index: 500; 
+  margin-top: 40px;
   
 }
 
 
 header {
+  
     position: relative;
-    margin-top: 2rem;
+    padding: auto;
+    margin: 0px;
     max-height: 70px;
     width: 90vw;
     max-width: 1400px; 
@@ -47,6 +50,8 @@ header {
     height:70px;
     transition: all 0.5s;
     box-shadow: ${(props) => props.theme.shadow.box};
+    
+
 
     &.toggleOff {
       transform: translateY(-200px);
