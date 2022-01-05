@@ -1,42 +1,48 @@
-import Styled from 'styled-components';
-import React from 'react';
-import './App.css';
-import Theme from './Theme'
+import Styled from "styled-components";
+import React from "react";
+import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
-import Navbar from './Components/Navbar';
-import Footer from './Components/footer';
+import "./App.css";
+import Theme from "./Theme";
 
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/footer";
 
-
-
-const Wrapper = Styled.div`
-
-
-.app {
-
-  user-select: none; /* supported by Chrome and Opera */
-   -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
-
-`;
-
-
+import Home from "./Pages/Home/home";
+import About from "./Pages/About/about";
+import Blog from "./Pages/Blog/Blog";
+import Portfolio from "./Pages/Portfolio/portfolio";
+import Contact from "./Pages/Contact/contact";
+import SinglePost from "./Pages/Blog/SinglePost";
 
 function App() {
   return (
     <Theme>
-       <Wrapper> 
-      <div className="app">
-     
-        <Navbar />
-        <div className="test">Hello world</div>
-        <Footer />
+    <Router>
+      
+        <div className="app">
+          <Navbar />
 
-        
-      </div>
-      </Wrapper>
+          <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<SinglePost />} />
+        <Route exact path="/portfolio" element={<Portfolio />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/contact" element={<Contact />} />
+      </Routes>
+
+
+
+
+
+
+          <Footer />
+        </div>
+      
+
+     
+    </Router>
     </Theme>
   );
 }

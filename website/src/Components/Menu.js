@@ -13,31 +13,31 @@ const Menu = () => {
     <nav>
       <ul className="nav-links">
         <li className="nav-link">
-          <NavLink exact activeClassName="active" to="/">
+          <NavLink  activeclassname="active" to="/">
             HOME
           </NavLink>
         </li>
 
         <li className="nav-link">
-          <NavLink exact activeClassName="active" to="/About">
+          <NavLink  activeclassname="active" to="/about">
             ABOUT
           </NavLink>
         </li>
 
         <li className="nav-link">
-          <NavLink exact activeClassName="active" to="/Blog">
+          <NavLink  activeclassname="active" to="/blog">
             BLOG
           </NavLink>
         </li>
 
         <li className="nav-link">
-          <NavLink exact activeClassName="active" to="/Portfolio">
+          <NavLink  activeclassname="active" to="/portfolio">
             PORTFOLIO
           </NavLink>
         </li>
 
         <li className="nav-link">
-          <NavLink exact activeClassName="active" to="/Contact">
+          <NavLink  activeclassname="active" to="/contact">
             CONTACT
           </NavLink>
         </li>
