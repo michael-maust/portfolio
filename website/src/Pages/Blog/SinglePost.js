@@ -1,22 +1,35 @@
-
-
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 import sanityClient from "../../client";
 import BlockContent from "@sanity/block-content-to-react";
 import imageUrlBuilder from "@sanity/image-url";
+
+
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
 
+const serializers = {
+  types: {
+    code: (props) => (
+      
+        <pre className="prettyprint">
+
+        <code className="prettyprint">{props.node.code}</code>
+        </pre>
+    ),
+  },
+};
+
 export default function SinglePost() {
   const [postData, setPostData] = useState(null);
-  const { slug } = useParams();
+  const {slug} = useParams();
 
   useEffect(() => {
-    sanityClient.fetch(
+    sanityClient
+      .fetch(
         `*[slug.current == $slug]{
           title,
           slug,
@@ -30,7 +43,7 @@ export default function SinglePost() {
         "name": author->name,
         "authorImage": author->image
        }`,
-        { slug }
+        {slug}
       )
       .then((data) => setPostData(data[0]))
       .catch(console.error);
@@ -39,25 +52,25 @@ export default function SinglePost() {
   if (!postData) return <div>Loading...</div>;
 
   return (
-    <div>
+    <article>
+      <h2>{postData.title}</h2>
       <div>
-        <h2>{postData.title}</h2>
-        <div>
-          <img
-            src={urlFor(postData.authorImage).width(100).url()}
-            alt="Author is Kap"
-          />
-          <h4>{postData.name}</h4>
-        </div>
+        <img
+          src={urlFor(postData.authorImage).width(100).url()}
+          alt="Author is Kap"
+        />
+        <h4>{postData.name}</h4>
       </div>
+
       <img src={urlFor(postData.mainImage).width(200).url()} alt="" />
       <div>
         <BlockContent
           blocks={postData.body}
           projectId={sanityClient.clientConfig.projectId}
           dataset={sanityClient.clientConfig.dataset}
+          serializers={serializers}
         />
       </div>
-    </div>
+    </article>
   );
 }
