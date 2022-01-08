@@ -55,7 +55,7 @@ const ResumeButton = () => {
           rel="noopener noreferrer"
           href="https://drive.google.com/file/d/1IfkSktkRyeXvZypM0DNy1iCBrxGoSvpa/view?usp=sharing"
         >
-          <div className="resume">DOWNLOAD CV</div>
+          <div className="resume">RESUME</div>
         </a>
       </div>
     </Wrapper>
