@@ -60,7 +60,7 @@ const AllPosts = () => {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"] [1...2]{
+        `*[_type == "post"] [0...3]{
         title,
         slug,
         mainImage{
