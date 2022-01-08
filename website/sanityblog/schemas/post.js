@@ -17,6 +17,16 @@ export default {
         maxLength: 96,
       },
     },
+
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'blockContent',
+    },
+
+
+
+
     {
       name: 'author',
       title: 'Author',

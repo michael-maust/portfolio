@@ -5,26 +5,93 @@ import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "@sanity/block-content-to-react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import pictureBorder from "../../media/pictureBorder.svg";
 
 const Wrapper = styled.div`
-  padding-top: 200px;
-  padding-left: 100px;
+  top: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  font-family: ${(props) => props.theme.fonts.primary};
+
   margin-left: auto;
   margin-right: auto;
   /* background: lightgray; */
 
   font-family: ${(props) => props.theme.fonts.primary};
-  width: 40vw;
+
+  article {
+    width: clamp(150px, 80vw, 1000px);
+    /* background: gray; */
+    padding: 20px;
+  }
+
+  .imageContainer {
+  
+    position: relative;
+    display: flex;
+    width: clamp(100px, 80vw, 800px);
+    height: clamp(200px, 20vh, 300px);
+    
+    
+  }
+
+
+
+svg {
+
+  width: clamp(200px, 60%, 450px);
+  height: clamp(100px, 60%, 200px);
+  z-index: -300;
+  box-shadow: ${(props) => props.theme.shadow.box};
+}
+
+  .imageBorderLeft {
+    position: absolute;
+    top: -17px;
+    left: -17px;
+   
+    border-radius: 20px 100px 20px 40px;
+    fill: ${(props) => props.theme.colors.orange};
+   
+    
+  }
+
+
+  .imageBorderRight {
+    position: absolute;
+    bottom: -17px;
+    right: -17px;
+   
+    border-radius: 20px 40px 20px 100px;
+    fill: ${(props) => props.theme.colors.blue};
+  }
+
+
+
+
 
   .mainImage {
-    width: clamp(200px, 70vw, 800px);
-    height: clamp(100px, 20vh, 300px);
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     border-radius: 20px;
+    position: relative;
+    display: flex;
+    margin: auto;
+    box-shadow: ${(props) => props.theme.shadow.box};
   }
 
   .postTitle {
     font-size: 3rem;
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.tan};
   }
 
   h1,
@@ -95,7 +162,7 @@ export default function SinglePost() {
   return (
     <Wrapper>
       <main>
-        <Link to="/blog/"> Back to Blog</Link>
+        {/* <Link to="/blog/"> Back to Blog</Link> */}
         <article>
           <header>
             <div>
@@ -106,22 +173,38 @@ export default function SinglePost() {
                             </div> */}
               </div>
             </div>
-            <img
-              className="mainImage"
-              src={postData.mainImage.asset.url}
-              alt={postData.title}
-            />
+
+            <container className="imageContainer">
+              <img
+                className="mainImage"
+                src={postData.mainImage.asset.url}
+                alt={postData.title}
+              ></img>
+
+              <svg width="300" height="100" className="imageBorderLeft">
+                  <rect x="0" y="0" width="100%" height="100%"  />
+              </svg>
+
+              <svg width="300" height="60" className="imageBorderRight">
+                  <rect x="0" y="0" width="100%" height="100%"  />
+              </svg>
+
+
+            </container>
 
             <h1 className="postTitle">{postData.title}</h1>
           </header>
-          <div>
-            <BlockContent
-              blocks={postData.body}
-              projectId="7vjlc1ik"
-              dataset="production"
-              serializers={serializers}
-            />
-          </div>
+
+          <section>
+            <div>
+              <BlockContent
+                blocks={postData.body}
+                projectId="7vjlc1ik"
+                dataset="production"
+                serializers={serializers}
+              />
+            </div>
+          </section>
         </article>
       </main>
     </Wrapper>
