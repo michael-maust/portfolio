@@ -21,7 +21,7 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
+      type: 'string',
     },
 
 
@@ -52,12 +52,21 @@ export default {
       name: 'publishedAt',
       title: 'Published at',
       type: 'date',
+      options: {
+        dateFormat: 'LL',
+    calendarTodayLabel: 'Today'
+      }
     },
     {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
     },
+
+    
+
+
+
   ],
 
   preview: {

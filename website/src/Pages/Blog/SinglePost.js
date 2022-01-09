@@ -5,7 +5,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "@sanity/block-content-to-react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
-import pictureBorder from "../../media/pictureBorder.svg";
+
+import Prism from "prismjs";
 
 const Wrapper = styled.div`
   top: 200px;
@@ -14,17 +15,18 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
-  margin-left: auto;
-  margin-right: auto;
+  padding-bottom: 300px;
 
   font-family: ${(props) => props.theme.fonts.primary};
 
-  margin-left: auto;
-  margin-right: auto;
   /* background: lightgray; */
 
   font-family: ${(props) => props.theme.fonts.primary};
+
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
 
   article {
     width: clamp(150px, 80vw, 1000px);
@@ -33,49 +35,39 @@ const Wrapper = styled.div`
   }
 
   .imageContainer {
-  
     position: relative;
     display: flex;
-    width: clamp(100px, 80vw, 800px);
-    height: clamp(200px, 20vh, 300px);
-    
-    
+    width: clamp(100px, 80vw, 1000px);
+    height: clamp(200px, 25vh, 400px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-
-
-svg {
-
-  width: clamp(200px, 60%, 450px);
-  height: clamp(100px, 60%, 200px);
-  z-index: -300;
-  box-shadow: ${(props) => props.theme.shadow.box};
-}
+  svg {
+    width: clamp(200px, 70%, 600px);
+    height: clamp(100px, 60%, 200px);
+    z-index: -300;
+    box-shadow: ${(props) => props.theme.shadow.box};
+  }
 
   .imageBorderLeft {
     position: absolute;
     top: -17px;
     left: -17px;
-   
+
     border-radius: 20px 100px 20px 40px;
     fill: ${(props) => props.theme.colors.orange};
-   
-    
   }
-
 
   .imageBorderRight {
     position: absolute;
     bottom: -17px;
     right: -17px;
-   
+
     border-radius: 20px 40px 20px 100px;
     fill: ${(props) => props.theme.colors.blue};
   }
-
-
-
-
 
   .mainImage {
     width: 100%;
@@ -89,9 +81,46 @@ svg {
   }
 
   .postTitle {
-    font-size: 3rem;
+    font-size: clamp(2rem, -0.675rem + 6.333vw, 3.2rem);
+
     font-weight: bold;
     color: ${(props) => props.theme.colors.tan};
+    margin: 50px 0px 20px 0px;
+  }
+
+  .detailContainer {
+    padding: 10px 15px 10px 15px;
+    margin: 0px 0px 10px 0px;
+    flex-wrap: wrap;
+    display: inline-flex;
+    align-items: left;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    box-shadow: ${(props) => props.theme.shadow.box};
+  }
+
+  .tags {
+    width: auto;
+    color: ${(props) => props.theme.colors.blue};
+  }
+
+  .divider {
+    position: relative;
+    height: inherit;
+    width: 5px;
+    background: ${(props) => props.theme.colors.charcoal};
+    border: none;
+    border-radius: 5px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px;
+  }
+
+  .date {
+    color: ${(props) => props.theme.colors.tan};
+    font-weight: lighter;
+    width: auto;
   }
 
   h1,
@@ -99,18 +128,107 @@ svg {
   h3,
   h4,
   h5 {
-    color: ${(props) => props.theme.colors.orange};
+    color: ${(props) => props.theme.colors.tan};
     text-transform: uppercase;
+    position: relative;
+
+    &:not(.postTitle) {
+      display: inline-block;
+      margin: 30px 0px 10px 0px;
+      font-weight: bold;
+
+      /* TODO: fix horizontal sizing issue multiple lines */
+      &:before {
+        content: "";
+        z-index: -1;
+        left: -0.2em;
+        display: inline-block;
+        top: 0.45em;
+        border-width: 0.45em;
+        border-style: solid;
+        border-radius: 5px;
+        border-color: ${(props) => props.theme.colors.blue};
+        position: absolute;
+        width: 100%;
+      }
+    }
+  }
+
+  h1 {
+    font-size: clamp(1.9rem, -0.875rem + 8.333vw, 2.3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, -0.875rem + 8.333vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.7rem, -0.875rem + 8.333vw, 1.8rem);
+  }
+
+  h4 {
+    font-size: clamp(1.4rem, -0.875rem + 8.333vw, 1.5rem);
+  }
+
+  h6 {
+    font-size: clamp(1rem, -0.875rem + 8.333vw, 1.5rem);
+    margin: 0px;
   }
 
   p {
     color: ${(props) => props.theme.colors.tan};
+    font-size: 1.6rem;
+    margin: 20px 0px 30px 0px;
 
-    font-size: 1.3rem;
+    & code {
+      background-color: ${(props) => props.theme.colors.darkGray};
+      border-radius: 7px;
+      padding: 2px 10px 2px 10px;
+    }
   }
 
-  img {
-    width: 500px;
+  a {
+    color: ${(props) => props.theme.colors.tan};
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration-color: ${(props) => props.theme.colors.orange};
+  }
+
+  ol,
+  ul {
+    color: ${(props) => props.theme.colors.tan};
+    font-size: 1.6rem;
+    margin-left: 10%;
+  }
+
+  blockquote {
+    position: relative;
+    font-family: ${(props) => props.theme.fonts.secondary};
+    color: ${(props) => props.theme.colors.tan};
+    font-size: 1.6rem;
+    padding: 20px 20% 30px 20%;
+    
+
+    &:before {
+      content: "";
+      border-left: 8px solid ${(props) => props.theme.colors.darkGray};
+      border-radius: 5px;
+      position: absolute;
+      bottom: 14px;
+      top: 13px;
+      left: clamp(-20px, 20%, 100px);
+      margin-right : 20px;
+      
+    }
+  }
+
+  img:not(.mainImage) {
+    border-radius: 20px;
+    position: relative;
+    width: 95%;
+    max-width: 700px;
+    margin: 20px 0 20px 0;
+    box-shadow: ${(props) => props.theme.shadow.box};
   }
 `;
 
@@ -126,9 +244,16 @@ export default function SinglePost() {
   const serializers = {
     types: {
       code: (props) => (
-        <pre data-language={props.node.language}>
-          <code> &lt;{props.node.code} </code>
-        </pre>
+        <div>
+          {console.log(props.node.code)}
+          <pre data-language={props.node.language}>
+            {Prism.highlight(
+              props.node.code,
+              Prism.languages.javascript,
+              "javascript"
+            )}
+          </pre>
+        </div>
       ),
     },
   };
@@ -146,6 +271,8 @@ export default function SinglePost() {
                         url
                     }
                 },
+                publishedAt,
+                description,
                 body,
                 "name": author->name,
                 "authorImage": author->image,
@@ -174,7 +301,7 @@ export default function SinglePost() {
               </div>
             </div>
 
-            <container className="imageContainer">
+            <div className="imageContainer">
               <img
                 className="mainImage"
                 src={postData.mainImage.asset.url}
@@ -182,17 +309,23 @@ export default function SinglePost() {
               ></img>
 
               <svg width="300" height="100" className="imageBorderLeft">
-                  <rect x="0" y="0" width="100%" height="100%"  />
+                <rect x="0" y="0" width="100%" height="100%" />
               </svg>
 
               <svg width="300" height="60" className="imageBorderRight">
-                  <rect x="0" y="0" width="100%" height="100%"  />
+                <rect x="0" y="0" width="100%" height="100%" />
               </svg>
-
-
-            </container>
+            </div>
 
             <h1 className="postTitle">{postData.title}</h1>
+
+            <div className="detailContainer">
+              <h6 className="tags">#{postData.tags}</h6>
+              <hr className="divider" />
+              <h6 className="date">{postData.publishedAt}</h6>
+            </div>
+
+            <p className="description">{postData.description}</p>
           </header>
 
           <section>

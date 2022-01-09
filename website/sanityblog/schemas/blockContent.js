@@ -69,8 +69,13 @@ export default {
     },
 
     {
-      type: "code",
-      title: "Code block",
-    }
+      name: 'code',
+      title: 'Code Block',
+      type: 'code',
+      options: {
+        theme: 'solarized_dark',
+        
+      }
+    },
   ],
 };
