@@ -110,7 +110,7 @@ const MenuStyle = Styled.div`
   }
 
 
-a:hover {
+a:hover:not(.active) {
   color: ${(props) => props.theme.colors.orange};
   transition: ease-in-out 500ms ;
 }

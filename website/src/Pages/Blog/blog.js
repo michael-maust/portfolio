@@ -10,7 +10,7 @@ import Prism from 'prismjs'
 
 const Wrapper = styled.div`
 
-padding: 500px;
+
 
 `
 

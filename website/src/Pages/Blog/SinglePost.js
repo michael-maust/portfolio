@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 
   /* background: lightgray; */
 
-  font-family: ${(props) => props.theme.fonts.primary};
+  
 
   * {
     margin: 0px;
@@ -133,12 +133,20 @@ const Wrapper = styled.div`
     position: relative;
 
     &:not(.postTitle) {
+      position: relative;
       display: inline-block;
       margin: 30px 0px 10px 0px;
       font-weight: bold;
+      background-color: ${(props) => props.theme.colors.blue};
+      border-radius: 10px;
+      padding: 0px 15px 0px 15px;
+      display: inline-block;
+      
+
+
 
       /* TODO: fix horizontal sizing issue multiple lines */
-      &:before {
+      /* &:before {
         content: "";
         z-index: -1;
         left: -0.2em;
@@ -150,7 +158,12 @@ const Wrapper = styled.div`
         border-color: ${(props) => props.theme.colors.blue};
         position: absolute;
         width: 100%;
-      }
+      } */
+
+
+
+
+
     }
   }
 
@@ -198,7 +211,8 @@ const Wrapper = styled.div`
   ul {
     color: ${(props) => props.theme.colors.tan};
     font-size: 1.6rem;
-    margin-left: 10%;
+    margin-left: min(15%, 80px);
+    
   }
 
   blockquote {
@@ -206,18 +220,17 @@ const Wrapper = styled.div`
     font-family: ${(props) => props.theme.fonts.secondary};
     color: ${(props) => props.theme.colors.tan};
     font-size: 1.6rem;
-    padding: 20px 20% 30px 20%;
-    
+    padding: 20px 0% 30px 5%;
+    display: inline-flex;
+    max-width: 700px;
 
     &:before {
       content: "";
       border-left: 8px solid ${(props) => props.theme.colors.darkGray};
       border-radius: 5px;
-      position: absolute;
-      bottom: 14px;
-      top: 13px;
-      left: clamp(-20px, 20%, 100px);
-      margin-right : 20px;
+      position: relative;
+      display: inline-flex;
+      margin-right : 30px;
       
     }
   }
@@ -232,10 +245,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const builder = imageUrlBuilder(sanityClient);
-function urlFor(source) {
-  return builder.image(source);
-}
+
 
 export default function SinglePost() {
   const [postData, setPostData] = useState(null); // initial state is null
@@ -274,8 +284,6 @@ export default function SinglePost() {
                 publishedAt,
                 description,
                 body,
-                "name": author->name,
-                "authorImage": author->image,
                 "tags": category->title
             }`
       )
