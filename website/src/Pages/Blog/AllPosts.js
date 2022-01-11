@@ -24,77 +24,60 @@ const Wrapper = styled.div`
   }
 
   .postContainer {
-    width: 80vw;
+    width: 90vw;
+    max-width: 1200px;
     position: relative;
-    display: flex;
+    height: 1200px;
+
+
+    /* display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: masonry; */
+
+
+
+
+  display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 1% 1% 40px 1%;
+ 
     gap: 20px;
-    margin: auto;
-    background-color: ${(props) => props.theme.colors.darkGray};
     
+
+    /* background-color: ${(props) => props.theme.colors.darkGray}; */
   }
 
   .postCards {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
     position: relative;
-    
-    
-    background-color: ${(props) => props.theme.colors.charcoal};
+    background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
-    height: 400px;
-    width: 360px;
-    overflow: hidden;
+    height: auto;
+    width: clamp(300px, 20vw, 350px);
     transition: ease-in-out 0.5s;
     cursor: pointer;
     box-shadow: ${(props) => props.theme.shadow.box};
-    padding: 1px;
+    
 
     &:hover {
       transform: scale(1.02);
-      
-      
-     
-
     }
-
   }
 
-  .cardHeader {
+  .mainImage {
+    position: relative;
     width: 100%;
-    height: 65%;
-    z-index: 100;
-    overflow: hidden;
-    
-    
-    
-  }
-
-
-  .textContainer {
     border-radius: 25px 25px 0px 0px;
-    width: 99.7%;
-    height: 66%;
-    position: absolute;
-    top: -1px;
-    
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
-    
-    
+    height: 50%;
+    max-height: 200px;
+    object-fit: cover;
     
   }
 
-.postTitle, .postDescription {
-  padding-left: 20px;
-
+.contentContainer {
+  padding: 5px 20px 20px 20px;
 }
-
 
 
 
@@ -102,42 +85,53 @@ const Wrapper = styled.div`
     text-decoration: none;
     color: ${(props) => props.theme.colors.orange};
     font-weight: bold;
-    padding-top: 20px;
+    text-transform: uppercase;
+    
+    font-size: clamp(1.5rem, -0.875rem + 5.333vw, 2rem);
     
   }
-
-
-
-
-  .mainImage {
-    
-    position: relative;
-    width: 100%;
-    border-radius: 25px 25px 0px 0px;
-    height: 100%;
-    object-fit: cover;
-    margin-right: 10px;
-    
-  }
-
- 
-
- 
-
-  .test {
-    text-decoration: none;
-  }
-
-  
 
   .postDescription {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.5rem;
+    
+    font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    width: 90%;
+  }
+
+hr {
+
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 55%;
+  height: 5px;
+  background-color: ${(props) => props.theme.colors.charcoal};
+  border: none;
+  border-radius: 20px;
+}
+
+
+.date, .tags, .postDescription {
+  font-size: clamp(1.2rem, -0.875rem + 5.333vw, 1.4rem);
+
+}
+
+
+
+
+  .date {
+    color: ${(props) => props.theme.colors.tan};
+  
+    font-weight: 300;
+  }
+
+  .tags {
+    margin-top: 5px;
+    font-weight: 700;
+    color: ${(props) => props.theme.colors.blue};
+    text-transform: lowercase;
   }
 `;
 
@@ -147,7 +141,7 @@ const AllPosts = () => {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"] [0...3]{
+        `*[_type == "post"] {
         title,
         slug,
         publishedAt,
@@ -181,26 +175,22 @@ const AllPosts = () => {
                 key={post.slug.current}
                 className="postCards"
               >
-                <div className="cardHeader">
-                  <span key={index}>
-                    <img
-                      className="mainImage"
-                      src={post.mainImage.asset.url}
-                      alt=""
-                    />
+                <span key={index}>
+                  <img
+                    className="mainImage"
+                    src={post.mainImage.asset.url}
+                    alt=""
+                  />
 
-                    <div className="textContainer">
-                      <h1 className="postTitle">{post.title}</h1>
+                  <div className="contentContainer">
+                    <h1 className="postTitle">{post.title}</h1>
+                    <p className="postDescription">{post.description}</p>
 
-                      <p className="postDescription">{post.description}</p>
-                    </div>
-                  </span>
-                </div>
-
-                <div className="postDetailContainer">
-                  <h6 className="date">{post.publishedAt}</h6>
-                  <h6 className="tags">#{post.tags}</h6>
-                </div>
+                    <hr />
+                    <h6 className="date">{post.publishedAt}</h6>
+                    <h6 className="tags">#{post.tags}</h6>
+                  </div>
+                </span>
               </Link>
             ))}
         </div>
