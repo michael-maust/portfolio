@@ -38,7 +38,7 @@ const Blog = () => {
     <div>
 
 
-    <code className="prettyprint"> {code}  </code>
+
     
        
       <AllPosts />
