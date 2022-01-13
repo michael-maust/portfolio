@@ -42,8 +42,10 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    align-content: center;
+    flex: flex-grow;
  
-    gap: 20px;
+    gap: 30px;
     
 
     /* background-color: ${(props) => props.theme.colors.darkGray}; */

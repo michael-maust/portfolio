@@ -10,6 +10,7 @@ import Styled from 'styled-components';
 import WisdomGenerator from './WisdomGenerator';
 import BioSection from './BioSection';
 import SkillSection from './SkillSection'
+import LatestPosts from '../Blog/latestPosts';
 
 
 const Wrapper = Styled.div`
@@ -24,10 +25,14 @@ const Wrapper = Styled.div`
   flex-direction: column;
   justify-content: center;
 
+
+
   margin-left: auto;
   margin-right: auto;
   
   font-family: ${(props) => props.theme.fonts.primary};
+
+
 
   
     
@@ -61,6 +66,9 @@ const home = () => {
     <SkillSection />
 
       <WisdomGenerator />
+
+      <LatestPosts />
+
     </Wrapper>
 
 
