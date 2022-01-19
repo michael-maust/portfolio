@@ -6,27 +6,49 @@ import BlockContent from "@sanity/block-content-to-react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 
+import LatestPosts from "./latestPosts";
+
 import Prism from "prismjs";
 
-const Wrapper = styled.div`
-  top: 200px;
+const ArticleStyle = styled.div`
+
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+
+article {
+
+  position: relative;
+  margin-top: clamp(180px, 20vh, 200px);
+}
+
+
+
+
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 300px;
 
   font-family: ${(props) => props.theme.fonts.primary};
 
   /* background: lightgray; */
 
-  
-
-  * {
-    margin: 0px;
-    padding: 0px;
+  .latestPosts {
+    margin-bottom: 200px;
   }
+
+ 
+
+  .latestPosts {
+    margin-bottom: 200px;
+  }
+
+
 
   article {
     width: clamp(150px, 80vw, 1000px);
@@ -141,9 +163,6 @@ const Wrapper = styled.div`
       border-radius: 10px;
       padding: 0px 15px 0px 15px;
       display: inline-block;
-      
-
-
 
       /* TODO: fix horizontal sizing issue multiple lines */
       /* &:before {
@@ -159,11 +178,6 @@ const Wrapper = styled.div`
         position: absolute;
         width: 100%;
       } */
-
-
-
-
-
     }
   }
 
@@ -212,7 +226,6 @@ const Wrapper = styled.div`
     color: ${(props) => props.theme.colors.tan};
     font-size: 1.6rem;
     margin-left: min(15%, 80px);
-    
   }
 
   blockquote {
@@ -230,8 +243,7 @@ const Wrapper = styled.div`
       border-radius: 5px;
       position: relative;
       display: inline-flex;
-      margin-right : 30px;
-      
+      margin-right: 30px;
     }
   }
 
@@ -243,7 +255,70 @@ const Wrapper = styled.div`
     margin: 20px 0 20px 0;
     box-shadow: ${(props) => props.theme.shadow.box};
   }
+
+
+  
 `;
+
+
+const BottomStyle = styled.div`
+
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+
+position: relative;
+
+ 
+  align-items: center;
+  justify-content: center;
+
+
+
+
+
+hr {
+  position: relative;
+ 
+
+
+ margin-top: clamp(70px, 10vh, 120px);
+ margin-bottom: clamp(70px, 10vh, 120px);
+ margin-left: auto;
+ margin-right: auto;
+  width: 40%;
+  max-width: 500px;
+  height: 10px;
+  background-color: ${(props) => props.theme.colors.darkGray};
+  border: none;
+  border-radius: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+`
+
+
+
+
+
+
+
+
 
 
 
@@ -295,10 +370,12 @@ export default function SinglePost() {
 
   console.log(postData.tags);
   return (
-    <Wrapper>
+   
       <main>
         {/* <Link to="/blog/"> Back to Blog</Link> */}
+        <ArticleStyle>
         <article>
+        
           <header>
             <div>
               <div>
@@ -347,7 +424,25 @@ export default function SinglePost() {
             </div>
           </section>
         </article>
+        </ArticleStyle>
+
+
+
+          <BottomStyle>
+
+          <hr />
+
+        <div className="latestPosts">
+          <LatestPosts />
+        </div>
+
+        <hr />
+
+        </BottomStyle>
+
+
+
       </main>
-    </Wrapper>
+    
   );
 }

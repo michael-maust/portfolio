@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
 
   padding-bottom: 1000px;
 
@@ -23,44 +24,49 @@ const Wrapper = styled.div`
     text-decoration: none;
   }
 
-  .postContainer {
-    width: 90vw;
-    max-width: 1200px;
-    position: relative;
-    height: 1200px;
+  .postComponent {
+    background-color: ${(props) => props.theme.colors.darkGray};
+    border-radius: 25px;
+    height: auto;
+    width: clamp(100px, 90vw, 1300px);
+    padding: 20px 0px 50px 0px;
+    box-shadow: ${(props) => props.theme.shadow.box};
 
-
-    /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-columns: masonry; */
-
-
-
-
-  display: flex;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    align-content: center;
-    flex: flex-grow;
- 
-    gap: 30px;
-    
+  }
 
-    /* background-color: ${(props) => props.theme.colors.darkGray}; */
+  .componentTitle {
+    position: relative;
+    color: ${(props) => props.theme.colors.tan};
+    font-weight: bold;
+    font-size: calc(1.6rem + 0.8vw);
+
+    margin-bottom: 20px;
+  
+  }
+
+  .postContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px;
+    gap: 30px;
   }
 
   .postCards {
     position: relative;
-    background-color: ${(props) => props.theme.colors.darkGray};
+    background-color: ${(props) => props.theme.colors.charcoal};
     border-radius: 25px;
     height: auto;
-    width: clamp(300px, 20vw, 350px);
+    width: clamp(250px, 80vw, 300px);
     transition: ease-in-out 0.5s;
     cursor: pointer;
     box-shadow: ${(props) => props.theme.shadow.box};
-    
 
     &:hover {
       transform: scale(1.02);
@@ -71,61 +77,76 @@ const Wrapper = styled.div`
     position: relative;
     width: 100%;
     border-radius: 25px 25px 0px 0px;
-    height: 50%;
-    max-height: 200px;
+    height: clamp(150px, 40vh, 350px);
+    filter:  opacity(30%);
+
+  
+
     object-fit: cover;
-    
   }
 
-.contentContainer {
-  padding: 5px 20px 20px 20px;
-}
 
 
+  .headerContainer {
+
+    position: absolute;
+    top: 0px;
+    margin: 20px;
+    overflow: hidden;
+
+  }
+
+
+
+
+
+
+  .contentContainer {
+    padding: 5px 20px 20px 20px;
+  }
 
   .postTitle {
+    vertical-align: middle;
+
     text-decoration: none;
     color: ${(props) => props.theme.colors.orange};
     font-weight: bold;
     text-transform: uppercase;
-    
+
     font-size: clamp(1.5rem, -0.875rem + 5.333vw, 2rem);
-    
   }
 
   .postDescription {
     color: ${(props) => props.theme.colors.tan};
-    
+
     font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    font-size: clamp(1.2rem, -0.875rem + 2.333vh, 1.4rem);
   }
 
-hr {
+  hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 55%;
+    height: 5px;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    border: none;
+    border-radius: 20px;
+  }
 
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: 55%;
-  height: 5px;
-  background-color: ${(props) => props.theme.colors.charcoal};
-  border: none;
-  border-radius: 20px;
-}
-
-
-.date, .tags, .postDescription {
-  font-size: clamp(1.2rem, -0.875rem + 5.333vw, 1.4rem);
-
-}
-
-
-
+  .date,
+  .tags
+  {
+    font-size: clamp(1.2rem, -0.875rem + 5.333vw, 1.4rem);
+  }
 
   .date {
     color: ${(props) => props.theme.colors.tan};
-  
+
     font-weight: 300;
   }
 
@@ -137,7 +158,7 @@ hr {
   }
 `;
 
-const AllPosts = () => {
+const LatestPosts = () => {
   const [allPostsData, setAllPosts] = useState(null);
 
   useEffect(() => {
@@ -167,38 +188,45 @@ const AllPosts = () => {
   return (
     <Wrapper>
       <div>
-        <h2>Blog Posts</h2>
-        <h3>Welcome to my blog posts page!</h3>
-        <div className="postContainer">
-          {allPostsData &&
-            allPostsData.map((post, index) => (
-              <Link
-                to={"/blog/" + post.slug.current}
-                key={post.slug.current}
-                className="postCards"
-              >
-                <span key={index}>
-                  <img
-                    className="mainImage"
-                    src={post.mainImage.asset.url}
-                    alt=""
-                  />
+        <div className="postComponent">
+          <h1 className="componentTitle">LATEST POSTS</h1>
 
-                  <div className="contentContainer">
-                    <h1 className="postTitle">{post.title}</h1>
-                    <p className="postDescription">{post.description}</p>
+          <div className="postContainer">
+            {allPostsData &&
+              allPostsData
+                .map((post, index) => (
+                  <Link
+                    to={"/blog/" + post.slug.current}
+                    key={post.slug.current}
+                    className="postCards"
+                  >
+                    <span key={index}>
+                      <img
+                        className="mainImage"
+                        src={post.mainImage.asset.url}
+                        alt=""
+                      />
 
-                    <hr />
-                    <h6 className="date">{post.publishedAt}</h6>
-                    <h6 className="tags">#{post.tags}</h6>
-                  </div>
-                </span>
-              </Link>
-            ))}
+                      
+                        <div className="headerContainer">
+                          <h1 className="postTitle">{post.title}</h1>
+                          <p className="postDescription">{post.description}</p>
+                        </div>
+
+                        <div className="contentContainer">
+                      
+                        <h6 className="date">{post.publishedAt}</h6>
+                        <h6 className="tags">#{post.tags}</h6>
+                      </div>
+                    </span>
+                  </Link>
+                ))
+                .reverse()}
+          </div>
         </div>
       </div>
     </Wrapper>
   );
 };
 
-export default AllPosts;
+export default LatestPosts;

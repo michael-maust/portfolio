@@ -6,17 +6,10 @@ import sanityClient from "../../client.js";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  top: 200px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-
-  padding-bottom: 1000px;
-
   font-family: ${(props) => props.theme.fonts.primary};
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   * {
     margin: 0px;
@@ -31,7 +24,7 @@ const Wrapper = styled.div`
     width: clamp(100px, 90vw, 1300px);
     padding: 20px 0px 50px 0px;
     box-shadow: ${(props) => props.theme.shadow.box};
-
+   
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -45,7 +38,6 @@ const Wrapper = styled.div`
     font-size: calc(1.6rem + 0.8vw);
 
     margin-bottom: 20px;
-    padding: 0px;
   }
 
   .postContainer {
@@ -54,7 +46,7 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    
+    padding: 10px;
     gap: 30px;
   }
 
@@ -63,7 +55,7 @@ const Wrapper = styled.div`
     background-color: ${(props) => props.theme.colors.charcoal};
     border-radius: 25px;
     height: auto;
-    width: clamp(250px, 20vw, 350px);
+    width: clamp(250px, 80vw, 300px);
     transition: ease-in-out 0.5s;
     cursor: pointer;
     box-shadow: ${(props) => props.theme.shadow.box};
@@ -77,15 +69,17 @@ const Wrapper = styled.div`
     position: relative;
     width: 100%;
     border-radius: 25px 25px 0px 0px;
-    height: clamp(150px, 20vh, 250px);
+    height: clamp(150px, 40vh, 350px);
+    filter: opacity(30%);
 
     object-fit: cover;
+  }
 
-
-
-
-
-
+  .headerContainer {
+    position: absolute;
+    top: 0px;
+    margin: 20px;
+    overflow: hidden;
   }
 
   .contentContainer {
@@ -93,14 +87,7 @@ const Wrapper = styled.div`
   }
 
   .postTitle {
-    
-
     vertical-align: middle;
-
-
-    
-
- 
 
     text-decoration: none;
     color: ${(props) => props.theme.colors.orange};
@@ -118,6 +105,8 @@ const Wrapper = styled.div`
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+
+    font-size: clamp(1.2rem, -0.875rem + 2.333vh, 1.4rem);
   }
 
   hr {
@@ -131,8 +120,7 @@ const Wrapper = styled.div`
   }
 
   .date,
-  .tags,
-  .postDescription {
+  .tags {
     font-size: clamp(1.2rem, -0.875rem + 5.333vw, 1.4rem);
   }
 
@@ -156,7 +144,7 @@ const LatestPosts = () => {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"] [1...4] {
+        `*[_type == "post"] [0...3]  {
         title,
         slug,
         publishedAt,
@@ -185,30 +173,33 @@ const LatestPosts = () => {
 
           <div className="postContainer">
             {allPostsData &&
-              allPostsData.map((post, index) => (
-                <Link
-                  to={"/blog/" + post.slug.current}
-                  key={post.slug.current}
-                  className="postCards"
-                >
-                  <span key={index}>
-                    <img
-                      className="mainImage"
-                      src={post.mainImage.asset.url}
-                      alt=""
-                    />
+              allPostsData
+                .map((post, index) => (
+                  <Link
+                    to={"/blog/" + post.slug.current}
+                    key={post.slug.current}
+                    className="postCards"
+                  >
+                    <span key={index}>
+                      <img
+                        className="mainImage"
+                        src={post.mainImage.asset.url}
+                        alt=""
+                      />
 
-                    <div className="contentContainer">
-                      <h1 className="postTitle">{post.title}</h1>
-                      <p className="postDescription">{post.description}</p>
+                      <div className="headerContainer">
+                        <h1 className="postTitle">{post.title}</h1>
+                        <p className="postDescription">{post.description}</p>
+                      </div>
 
-                      <hr />
-                      <h6 className="date">{post.publishedAt}</h6>
-                      <h6 className="tags">#{post.tags}</h6>
-                    </div>
-                  </span>
-                </Link>
-              )).reverse()}
+                      <div className="contentContainer">
+                        <h6 className="date">{post.publishedAt}</h6>
+                        <h6 className="tags">#{post.tags}</h6>
+                      </div>
+                    </span>
+                  </Link>
+                ))
+                .reverse()}
           </div>
         </div>
       </div>
