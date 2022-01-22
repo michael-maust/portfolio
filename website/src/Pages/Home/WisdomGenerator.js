@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 0px 30vh 0px;
+  /* padding: 0px 0px 30vh 0px; */
   width: 100%;
   height: auto;
 

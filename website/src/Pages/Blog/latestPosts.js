@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     width: clamp(100px, 90vw, 1300px);
     padding: 20px 0px 50px 0px;
     box-shadow: ${(props) => props.theme.shadow.box};
-   
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -136,6 +136,26 @@ const Wrapper = styled.div`
     color: ${(props) => props.theme.colors.blue};
     text-transform: lowercase;
   }
+
+  hr {
+    background-color: ${(props) => props.theme.colors.charcoal};
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 7px;
+    margin: 10px;
+  }
+
+  .description {
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+    text-align: center;
+    font-size: ${(props) => props.theme.fontSizes.para};
+    color: ${(props) => props.theme.colors.tan};
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 const LatestPosts = () => {
@@ -170,6 +190,11 @@ const LatestPosts = () => {
       <div>
         <div className="postComponent">
           <h1 className="componentTitle">LATEST POSTS</h1>
+          <hr />
+          <p className="description">
+            I love writing and sharing what I know. Here are a few articles that
+            I've recently written:
+          </p>
 
           <div className="postContainer">
             {allPostsData &&

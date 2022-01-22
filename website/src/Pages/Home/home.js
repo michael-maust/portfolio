@@ -1,29 +1,27 @@
-import React from 'react';
-import Styled from 'styled-components';
-
-
-
-
-
+import React from "react";
+import Styled from "styled-components";
 
 // File Imports
-import WisdomGenerator from './WisdomGenerator';
-import BioSection from './BioSection';
-import SkillSection from './SkillSection'
-import LatestPosts from '../Blog/latestPosts';
-
+import WisdomGenerator from "./WisdomGenerator";
+import BioSection from "./BioSection";
+import WebsiteDetails from "./WebsiteDetails";
+import SkillSection from "./SkillSection";
+import LatestPosts from "../Blog/latestPosts";
 
 const Wrapper = Styled.div`
 
   
 
 
-  top: 140px;
+  top: clamp(150px, 25vh, 250px);
   position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+
+  
+
 
 
 
@@ -37,12 +35,17 @@ const Wrapper = Styled.div`
   
     
 
-       
 
       
 
   
-       
+  .centerSpacing {
+    padding-top: 200px;
+  }
+
+  .bottomSpacing {
+    padding-top: 400px;
+  }
 
 
 
@@ -56,23 +59,38 @@ const Wrapper = Styled.div`
 
 const home = () => {
   return (
-    <div className='HomePage'> 
-    <Wrapper>
-     
-      <div className=""></div>
+    <div className="HomePage">
+      <Wrapper>
+        <div className=""></div>
 
-          
-    <BioSection />
-    <SkillSection />
+        <div className="topSpacing"></div>
 
-      <WisdomGenerator />
-
-      <LatestPosts />
-
-    </Wrapper>
+      
+        <BioSection />
 
 
-</div>
+        <div className="centerSpacing"></div>
+
+        
+
+        <WebsiteDetails />
+
+        <div className="centerSpacing"></div>
+
+        <SkillSection />
+
+        <div className="centerSpacing"></div>
+
+        <WisdomGenerator />
+
+        <div className="centerSpacing"></div>
+
+        <LatestPosts />
+
+        <div className="bottomSpacing"></div>
+
+      </Wrapper>
+    </div>
   );
 };
 

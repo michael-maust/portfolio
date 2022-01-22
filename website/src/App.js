@@ -1,4 +1,4 @@
-import Styled from "styled-components";
+import styled from "styled-components";
 import React from "react";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
@@ -11,38 +11,46 @@ import Footer from "./Components/footer";
 import Home from "./Pages/Home/home";
 import About from "./Pages/About/about";
 import Blog from "./Pages/Blog/Blog";
-import Portfolio from "./Pages/Portfolio/portfolio";
+import Projects from "./Pages/Projects/Projects";
 import Contact from "./Pages/Contact/contact";
 import SinglePost from "./Pages/Blog/SinglePost";
+
+const Wrapper = styled.div`
+
+
+.pages{
+  
+}
+
+
+`;
 
 function App() {
   return (
     <Theme>
-    <Router>
-      
-        <div className="app">
-          <Navbar />
-
-          <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<SinglePost />} />
-        <Route exact path="/portfolio" element={<Portfolio />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/contact" element={<Contact />} />
-      </Routes>
+      <Wrapper>
+        <Router>
+          <div className="app">
+            <Navbar />
 
 
+          <div className="pages">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<SinglePost />} />
+              <Route exact path="/projects" element={<Projects />} />
+              <Route exact path="/about" element={<About />} />
+              <Route exact path="/contact" element={<Contact />} />
+            </Routes>
+
+            </div>
 
 
-
-
-          <Footer />
-        </div>
-      
-
-     
-    </Router>
+            <Footer />
+          </div>
+        </Router>
+      </Wrapper>
     </Theme>
   );
 }

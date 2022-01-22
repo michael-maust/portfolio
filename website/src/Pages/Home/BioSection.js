@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
 
-    padding: 10vh 0px 30vh 0px;
+   
 
     width: 80vw;
     max-width: 2000px;
@@ -82,18 +82,23 @@ const Wrapper = styled.div`
 
 
   @media only screen and (max-width: 999px) {
+
+    p {
+      text-align: center;
+    }
+
     .mainContainer {
       padding-top: 20px;
     }
 
     .flexColumn {
       /* background-color: green; */
-      gap: 70px;
-      width: 72vw;
+      gap: 60px;
+      width: 85vw;
       max-width: 450px;
     }
 
-    @media only screen and (min-width: 500px) and (max-width: 974px) {
+    /* @media only screen and (min-width: 500px) and (max-width: 974px) {
       .portrait {
         width: clamp(230px, 72vw, 300px);
       }
@@ -107,7 +112,7 @@ const Wrapper = styled.div`
         left: -40px;
         border-left: 15px solid ${(props) => props.theme.colors.darkGray};
       }
-    }
+    } */
   } ;
 `;
 
@@ -121,14 +126,14 @@ const BioSection = () => {
 
             <container className="flexColumn">
               <p className="aboutText">
-                My name is <span className="bold"> Michael Maust.</span> I am a{" "}
-                <span className="underline">software developer</span>,{" "}
-                <span className="underline">entrepreneur</span>, and{" "}
-                <span className="underline">engineer</span>.
+                My name is <span className="bold"> Michael Maust.</span> I am an{" "}
+                <span className="underline">entrepreneur</span>,{" "}
+                <span className="underline">engineer</span>, and{" "}
+                <span className="underline">frontend developer</span>.
               </p>
 
               <p className="missionText">
-                My mission is to create innovative software and businesses{" "}
+                My mission is to build and create innovative software and businesses{" "}
                 <span className="highlight">
                   that bring value to people's lives.
                 </span>

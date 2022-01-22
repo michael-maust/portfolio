@@ -27,7 +27,7 @@ h1 {
 
 `;
 
-const portfolio = () => {
+const Projects = () => {
   return (
     <Wrapper>
       <div>
@@ -39,5 +39,5 @@ const portfolio = () => {
   );
 };
 
-export default portfolio;
+export default Projects;
 

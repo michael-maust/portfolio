@@ -20,6 +20,7 @@ const theme = {
     small: '1em',
     medium: '2em',
     large: '3em',
+    para: 'clamp(1.3rem, -0.875rem + 6.333vw, 1.5rem)'
   },
   shadow: {
     box: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);'

@@ -11,13 +11,10 @@ import ResumeButton from './ResumeButton';
 const Wrapper = Styled.div`
 
 
-.navbar {
 
-    
-}
 
 .footer {
-
+        margin-top: 100px;
         position: relative;
         bottom: 0px;
         width: 100%;

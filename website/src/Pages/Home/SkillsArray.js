@@ -14,7 +14,7 @@ const skillsArray = [
   {
     index: 0,
     icon: AdobeIcon,
-    name: "Creative Cloud",
+    name: "Adobe Suite",
     experience: "8+ Years",
     description:
       "I am highly proficient with PhotoShop, Illustrator, and XD. I started using Adobe software when I was younger to do graphic design with my Wacom Intuos 4 drawing tablet. I have since dabbled with most of the other Adobe applications.",
