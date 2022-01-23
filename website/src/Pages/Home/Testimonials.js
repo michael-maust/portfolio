@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     position: relative;
     width: 100vw;
     background-color: ${(props) => props.theme.colors.darkGray};
-    padding: 30px 0px 30px 0px;
+    padding: 10px 0px 10px 0px;
     box-shadow: ${(props) => props.theme.shadow.box};
   }
 
@@ -43,8 +43,7 @@ const Wrapper = styled.div`
     color: ${(props) => props.theme.colors.tan};
     font-weight: bold;
     font-size: clamp(1.9rem, -0.875rem + 8.333vw, 2.8rem);
-    margin-top: 20px;
-    margin-bottom: 5px;
+
     padding: 0px;
   }
 
@@ -54,7 +53,7 @@ const Wrapper = styled.div`
     border-radius: 20px;
     width: 200px;
     height: 7px;
-    margin: 10px;
+    margin: 5px;
   }
 
   .description {
@@ -64,7 +63,7 @@ const Wrapper = styled.div`
     text-align: center;
     font-size: ${(props) => props.theme.fontSizes.para2};
     color: ${(props) => props.theme.colors.tan};
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 20px;
   }
 
@@ -93,7 +92,7 @@ const Wrapper = styled.div`
     color: ${(props) => props.theme.colors.orange};
     font-size: 1.4rem;
     font-weight: 600;
-    
+
     width: 100%;
   }
 
@@ -102,7 +101,6 @@ const Wrapper = styled.div`
     font-style: italic;
     font-size: 1rem;
     font-weight: 100;
-  
   }
 
   .testimonialDetails {
@@ -111,7 +109,7 @@ const Wrapper = styled.div`
     align-items: center;
 
     gap: 15px;
-  
+
     padding-bottom: 10px;
   }
 
@@ -120,17 +118,12 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-   
-   
-    
-    
-    
   }
 
   .recommendation {
+    width: auto;
     position: relative;
     white-space: pre-line;
-    width: auto;
 
     margin-top: 10px;
     margin-bottom: 15px;
@@ -154,6 +147,7 @@ const Wrapper = styled.div`
     width: max-content;
     bottom: 15px;
     right: 20px;
+    width: auto;
   }
 
   .cardContainer {
@@ -164,6 +158,7 @@ const Wrapper = styled.div`
     justify-content: center;
     gap: 30px;
     height: 300px;
+    width: 10vw;
   }
 
   .overflowContainer {
@@ -222,35 +217,21 @@ const Wrapper = styled.div`
     opacity: 0;
   }
 
-
-  .showOnMobile{
-      position: relative;
-        display: none;
-        padding-top: 30px;
-      
-    }
-
-
-  @media only screen and (max-width: 450px) {
-
-    .hideOnMobile{
-        display: none;
-        
-    }
-
-    .showOnMobile{
-      
-        display: unset;
-    }
-
+  .showOnMobile {
+    position: relative;
+    display: none;
+    padding-top: 30px;
   }
 
-  
+  @media only screen and (max-width: 450px) {
+    .hideOnMobile {
+      display: none;
+    }
 
-
-
-
-
+    .showOnMobile {
+      display: unset;
+    }
+  }
 `;
 
 const ModalStyle = styled.div`
@@ -285,13 +266,13 @@ const ModalStyle = styled.div`
     margin-right: auto;
     position: relative;
     border-radius: 25px;
-    padding: 20px 20px 40px 20px;
+    padding: 20px;
   }
 
   .toggleOffButton {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    right: 20px;
+    bottom: 20px;
     fill: ${(props) => props.theme.colors.darkGray};
     cursor: pointer;
 
@@ -305,6 +286,49 @@ const ModalStyle = styled.div`
     flex-direction: row;
     align-items: center;
   }
+
+  .recommendationModal {
+    width: auto;
+    max-height: 50vh;
+    position: relative;
+    white-space: pre-line;
+
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-family: ${(props) => props.theme.fonts.secondary};
+    font-size: ${(props) => props.theme.fontSizes.para2};
+    color: ${(props) => props.theme.colors.tan};
+  }
+
+  .recommendationContainer {
+    overflow-y: auto;
+
+    padding-right: 20px;
+    margin-bottom: 50px;
+
+    &::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: ${(props) => props.theme.colors.darkGray};
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+
+      background-color: ${(props) => props.theme.colors.charcoal};
+      width: 2px;
+      border: 2px solid ${(props) => props.theme.colors.darkGray};
+    }
+  }
+
+
+
+
+
 `;
 
 const Testimonials = () => {
@@ -315,6 +339,13 @@ const Testimonials = () => {
     setToggleModal({toggle: toggle});
     setIndex(arrayIndex);
   };
+
+  //Disables Body Scroll when Modal is Active
+  if (toggleModal.toggle) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
 
   const slideLeft = () => {
     console.log("slideLeft");
@@ -357,11 +388,15 @@ const Testimonials = () => {
         ? "activeCard"
         : "prevCard";
 
+    let activeModal = position === "activeCard" ? true : false;
+
     return (
       <div
         className={`testimonialCard ${position}`}
         key={testimonial.index}
-        onClick={() => modalGenerator(true, currentIndex)}
+        onClick={() => {
+          modalGenerator(activeModal, currentIndex);
+        }}
       >
         <div className="testimonialDetails">
           <img
@@ -475,16 +510,18 @@ const Testimonials = () => {
                   alt=""
                 />
 
-                <div className="TextContainer">
+                <div className="TextContainer modalText">
                   <p className="recommenderName">
                     {testimonialArray[index].name}
                   </p>
                   <p className="position">{testimonialArray[index].position}</p>
                 </div>
               </div>
-              <p className="recommendation">
-                {testimonialArray[index].recommendation}
-              </p>
+              <div className="recommendationContainer">
+                <p className="recommendationModal">
+                  {testimonialArray[index].recommendation}
+                </p>
+              </div>
             </div>
           </div>
         </ModalStyle>

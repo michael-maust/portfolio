@@ -232,6 +232,16 @@ const SkillSection = () => {
     index: 0,
   });
 
+
+  //Disables Body Scroll when Modal is Active
+  if(toggleModal.toggle) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
+
+
+
   const modalGenerator = (toggle, arrayIndex) => {
     setToggleModal({toggle: toggle, index: arrayIndex});
   };
