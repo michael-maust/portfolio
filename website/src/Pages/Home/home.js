@@ -7,7 +7,7 @@ import BioSection from "./BioSection";
 import WebsiteDetails from "./WebsiteDetails";
 import SkillSection from "./SkillSection";
 import LatestPosts from "../Blog/latestPosts";
-
+import Testimonials from "./Testimonials";
 const Wrapper = Styled.div`
 
   
@@ -84,6 +84,12 @@ const home = () => {
         <WisdomGenerator />
 
         <div className="centerSpacing"></div>
+
+  
+      <Testimonials />
+
+      <div className="centerSpacing"></div>
+
 
         <LatestPosts />
 
