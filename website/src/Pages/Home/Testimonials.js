@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, cloneElement} from "react";
 import styled from "styled-components";
 import testimonialArray from "./testimonialArray";
 
@@ -60,7 +60,6 @@ const Wrapper = styled.div`
   .description {
     width: 95%;
     max-width: 800px;
-
     position: relative;
     text-align: center;
     font-size: ${(props) => props.theme.fontSizes.para2};
@@ -71,13 +70,10 @@ const Wrapper = styled.div`
 
   .testimonialCard {
     margin-top: 20px;
-    position: relative;
+    position: absolute;
     background-color: ${(props) => props.theme.colors.charcoal};
     border-radius: 25px;
-
     width: clamp(180px, 70vw, 600px);
-    height: auto;
-
     padding: 30px;
     cursor: pointer;
     box-shadow: ${(props) => props.theme.shadow.box};
@@ -86,27 +82,49 @@ const Wrapper = styled.div`
 
   .testimonialPicture {
     width: auto;
-    height: 70px;
+    height: 15vw;
+    max-height: 70px;
+
     border-radius: 50%;
   }
 
   .recommenderName {
+    position: relative;
     color: ${(props) => props.theme.colors.orange};
     font-size: 1.4rem;
     font-weight: 600;
+    
+    width: 100%;
   }
 
   .position {
     color: ${(props) => props.theme.colors.tan};
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 100;
+  
   }
 
   .testimonialDetails {
     display: flex;
+    flex-direction: row;
+    align-items: center;
 
     gap: 15px;
+  
+    padding-bottom: 10px;
+  }
+
+  .textContainer {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   
+   
+    
+    
+    
   }
 
   .recommendation {
@@ -137,68 +155,231 @@ const Wrapper = styled.div`
     bottom: 15px;
     right: 20px;
   }
+
+  .cardContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    gap: 30px;
+    height: 300px;
+  }
+
+  .overflowContainer {
+    position: relative;
+  }
+
+  .paginator {
+    position: relative;
+    padding-top: 20px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .paginatorCircles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: ${(props) => props.theme.colors.lightBlue};
+    border-radius: 50%;
+    height: 1rem;
+    width: 1rem;
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+
+    &.active {
+      background-color: ${(props) => props.theme.colors.blue};
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .slideLeft,
+  .slideRight {
+    cursor: pointer;
+  }
+
+  .prevCard {
+    left: calc(0% + 2rem);
+    opacity: 0;
+  }
+
+  .activeCard {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nextCard {
+    left: 100%;
+    transform: translateX(calc(-100% - 2rem));
+    opacity: 0;
+  }
+
+
+  .showOnMobile{
+      position: relative;
+        display: none;
+        padding-top: 30px;
+      
+    }
+
+
+  @media only screen and (max-width: 450px) {
+
+    .hideOnMobile{
+        display: none;
+        
+    }
+
+    .showOnMobile{
+      
+        display: unset;
+    }
+
+  }
+
+  
+
+
+
+
+
 `;
 
-// useInterval custom hook resolves the issue of changing state within a setInterval function.
-// Credit: Dan Abramov (Made freely available)
+const ModalStyle = styled.div`
+  .experienceModal {
+    z-index: 2000;
+    visibility: ${(props) => (props.toggleModal.toggle ? "" : "hidden")};
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(240px, 90vw, 700px);
+  }
 
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
+  .modalBackground {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
 
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
+  .modalContainer {
+    position: fixed;
+    background: ${(props) => props.theme.colors.charcoal};
+    box-shadow: ${(props) => props.theme.shadow.box};
 
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    border-radius: 25px;
+    padding: 20px 20px 40px 20px;
+  }
+
+  .toggleOffButton {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    fill: ${(props) => props.theme.colors.darkGray};
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
     }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
+  }
+
+  .rowFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
 
 const Testimonials = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const [index, setIndex] = useState(0);
 
+  const modalGenerator = (toggle, arrayIndex) => {
+    setToggleModal({toggle: toggle});
+    setIndex(arrayIndex);
+  };
 
-  const generateCircles = testimonialArray.map((testimonial) =>(
-
-    <div
-          className="skillItem"
-          key={index}
-        //   onClick={() => modalGenerator(true, skill.index)}
-        >
-    
-            {testimonial.name}</div>
-    
-    ))
-
-
-
-  useInterval(() => {
-    if (index === testimonialArray.length - 1) {
-      setIndex(0);
+  const slideLeft = () => {
+    console.log("slideLeft");
+    console.log(index);
+    if (index > 0) {
+      setIndex(index - 1);
+      console.log(index);
     } else {
-      setIndex(index + 1);
+      setIndex(testimonialArray.length - 1);
     }
-  }, 5000);
+  };
 
+  const slideRight = () => {
+    console.log("slideRight");
+    console.log(index);
+    if (index + 1 <= testimonialArray.length - 1) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
+  };
 
+  const generateCircles = testimonialArray.map((testimonial, currentIndex) => {
+    let pageinatorStatus = currentIndex === index ? "active" : "inactive";
 
+    return (
+      <div
+        className={`paginatorCircles ${pageinatorStatus}`}
+        key={testimonial.index}
+        onClick={() => setIndex(currentIndex)}
+      ></div>
+    );
+  });
 
+  const generateCards = testimonialArray.map((testimonial, currentIndex) => {
+    let position =
+      currentIndex > index
+        ? "nextCard"
+        : currentIndex === index
+        ? "activeCard"
+        : "prevCard";
 
-
-
-
-
-
-
+    return (
+      <div
+        className={`testimonialCard ${position}`}
+        key={testimonial.index}
+        onClick={() => modalGenerator(true, currentIndex)}
+      >
+        <div className="testimonialDetails">
+          <img
+            className="testimonialPicture"
+            src={testimonial.picture}
+            alt=""
+          />
+          <div className="textContainer">
+            <p className="recommenderName">{testimonial.name}</p>
+            <p className="position hideOnMobile">{testimonial.position}</p>
+          </div>
+        </div>
+        <p className="position showOnMobile">{testimonial.position}</p>
+        <p className="recommendation">{testimonial.recommendation}</p>
+        <p className="seeMore">...see more</p>
+      </div>
+    );
+  });
 
   return (
     <div>
@@ -214,7 +395,79 @@ const Testimonials = () => {
               me:
             </p>
 
-            <div className="testimonialCard" key={testimonialArray[index].name}>
+            <div className="overflowContainer">
+              <div className="cardContainer">{generateCards}</div>
+            </div>
+
+            <div className="paginator">
+              <svg
+                className="slideLeft"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.025"
+                height="31.808"
+                viewBox="0 0 18.025 31.808"
+                onClick={() => slideLeft()}
+              >
+                <path
+                  id="Path_4593"
+                  data-name="Path 4593"
+                  d="M12146.431,5100.626l-13.783,13.783,13.783,13.783"
+                  transform="translate(-12130.526 -5098.505)"
+                  fill="none"
+                  stroke="#929aa2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                />
+              </svg>
+
+              {generateCircles}
+
+              <svg
+                className="slideRight"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18.025"
+                height="31.808"
+                viewBox="0 0 18.025 31.808"
+                onClick={() => slideRight()}
+              >
+                <path
+                  id="Path_4594"
+                  data-name="Path 4594"
+                  d="M12146.431,5100.626l-13.783,13.783,13.783,13.783"
+                  transform="translate(12148.552 5130.313) rotate(180)"
+                  fill="none"
+                  stroke="#929aa2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <ModalStyle toggleModal={toggleModal}>
+          <div className="experienceModal">
+            <div
+              className="modalBackground"
+              onClick={() => modalGenerator(false, index)}
+            ></div>
+            <div className="modalContainer">
+              <svg
+                className="toggleOffButton"
+                onClick={() => modalGenerator(false, index)}
+                xmlns="http://www.w3.org/2000/svg"
+                width="30.008"
+                height="30"
+                viewBox="0 0 30.008 30"
+              >
+                <path
+                  d="M29.845,26.289,40.562,15.571a2.511,2.511,0,0,0-3.552-3.552L26.293,22.737,15.575,12.019a2.511,2.511,0,1,0-3.552,3.552L22.741,26.289,12.024,37.006a2.511,2.511,0,0,0,3.552,3.552L26.293,29.84,37.011,40.558a2.511,2.511,0,0,0,3.552-3.552Z"
+                  transform="translate(-11.285 -11.289)"
+                />
+              </svg>
+
               <div className="testimonialDetails">
                 <img
                   className="testimonialPicture"
@@ -232,12 +485,9 @@ const Testimonials = () => {
               <p className="recommendation">
                 {testimonialArray[index].recommendation}
               </p>
-              <p className="seeMore">...see more</p>
             </div>
-
-            <div className="cardSelector">{generateCircles}</div>
           </div>
-        </div>
+        </ModalStyle>
       </Wrapper>
     </div>
   );

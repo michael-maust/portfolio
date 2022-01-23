@@ -37,7 +37,7 @@ const testimonialArray = [
     
     Michael set up processes and systems for engineering classes, equipment, and operations. He has strong project management skills as well as organizational skills. Michael learned how to use our new lobby electronic display monitor then trained others and developed the content. He also took the initiative to learn the system then trained others on our new 3-D scanner. This includes developing applications used for coursework.
     
-    Continuing on Michael’s project management and organizational skills, Michael created and documented training day materials - the proof of his effectiveness was that training day ran flawlessly without the work supervisor. Michael’s capabilities were also recognized by professors - he was a popular request for participation and/or support.
+    Continuing on Michael's project management and organizational skills, Michael created and documented training day materials - the proof of his effectiveness was that training day ran flawlessly without the work supervisor. Michael’s capabilities were also recognized by professors - he was a popular request for participation and/or support.
     
     Michael developed systems for day-to-day operations with timing, definition, and accountability. Software implementation for the engineering student worker team operation included ClickUp, Airtable, and SharePoint. Michael was the primary driver to implement the LinkedIn strategy for the engineering program.
     
@@ -45,6 +45,10 @@ const testimonialArray = [
     
     This might be the easiest recommendation that I have written - Michael is amazing.`,
   },
+ 
+
+
+
  
 ];
 
