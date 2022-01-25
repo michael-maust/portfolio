@@ -5,9 +5,16 @@ import Styled from "styled-components";
 import WisdomGenerator from "./WisdomGenerator";
 import BioSection from "./BioSection";
 import WebsiteDetails from "./WebsiteDetails";
+import LatestProjects from "../Projects/LatestProjects";
+
+
 import SkillSection from "./SkillSection";
 import LatestPosts from "../Blog/latestPosts";
 import Testimonials from "./Testimonials";
+
+
+
+
 const Wrapper = Styled.div`
 
   
@@ -77,11 +84,16 @@ const home = () => {
 
         <div className="centerSpacing"></div>
 
-        <SkillSection />
+        <LatestProjects />
 
         <div className="centerSpacing"></div>
 
-        <WisdomGenerator />
+       <WisdomGenerator />
+
+        <div className="centerSpacing"></div>
+
+        
+        <SkillSection />
 
         <div className="centerSpacing"></div>
 

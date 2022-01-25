@@ -131,6 +131,7 @@ const Wrapper = styled.div`
   }
 
   .newQuoteButton {
+    font-weight: 700;
     position: absolute;
     bottom: -26px;
     color: ${(props) => props.theme.colors.tan};
@@ -140,10 +141,11 @@ const Wrapper = styled.div`
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
+    transition: ease-in-out 500ms;
 
     &:hover {
-      transform: scale(1.1);
-      transition: ease-in-out 500ms;
+      transform: scale(1.05);
+     
       color: ${(props) => props.theme.colors.tan};
     }
   }

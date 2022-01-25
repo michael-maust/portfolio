@@ -74,7 +74,7 @@ const Wrapper = styled.div`
     border-radius: 25px;
     width: clamp(180px, 70vw, 600px);
     padding: 30px;
-    cursor: pointer;
+    
     box-shadow: ${(props) => props.theme.shadow.box};
     transition: ease-in-out 0.5s;
   }
@@ -159,10 +159,12 @@ const Wrapper = styled.div`
     gap: 30px;
     height: 300px;
     width: 10vw;
+    
   }
 
   .overflowContainer {
     position: relative;
+   
   }
 
   .paginator {
@@ -209,6 +211,8 @@ const Wrapper = styled.div`
   .activeCard {
     left: 50%;
     transform: translateX(-50%);
+    z-index: 100;
+    cursor: pointer;
   }
 
   .nextCard {

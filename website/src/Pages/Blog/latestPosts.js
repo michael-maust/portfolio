@@ -156,6 +156,22 @@ const Wrapper = styled.div`
     margin-top: 10px;
     margin-bottom: 20px;
   }
+
+  .moreButton {
+  margin-top: 20px;
+  font-size: clamp(1.1rem, -0.875rem + 2vw, 1.4rem);
+  font-weight: 700;
+  border-radius: 10px 30px 10px 30px;
+  color: ${(props) => props.theme.colors.tan};
+  background-color: ${(props) => props.theme.colors.green};
+  padding: 5px 20px 5px 20px;
+  transition: ease-in-out 0.5s;
+    cursor: pointer;
+
+  &:hover {
+      transform: scale(1.02);
+    }
+}
 `;
 
 const LatestPosts = () => {
@@ -226,7 +242,11 @@ const LatestPosts = () => {
                 ))
                 .reverse()}
           </div>
+          <Link to={"/blog/"} className="moreButton">
+            SEE MORE {'>'}
+          </Link>
         </div>
+        
       </div>
     </Wrapper>
   );
