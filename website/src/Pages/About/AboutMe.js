@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import sanityClient from "../../client";
-import imageUrlBuilder from "@sanity/image-url";
-import BlockContent from "@sanity/block-content-to-react";
+
+
+
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 
@@ -310,105 +310,22 @@ const ArticleStyle = styled.div`
   }
 `;
 
-const BottomStyle = styled.div`
-  * {
-    margin: 0px;
-    padding: 0px;
-  }
 
-  position: relative;
+export default function AboutMe() {
+  
 
-  align-items: center;
-  justify-content: center;
 
-  hr {
-    position: relative;
-
-    margin-top: clamp(70px, 10vh, 120px);
-    margin-bottom: clamp(70px, 10vh, 120px);
-    margin-left: auto;
-    margin-right: auto;
-    width: 40%;
-    max-width: 500px;
-    height: 10px;
-    background-color: ${(props) => props.theme.colors.darkGray};
-    border: none;
-    border-radius: 20px;
-  }
-`;
-
-export default function SingleProject() {
-  const [postData, setPostData] = useState(null); // initial state is null
-  const {slug} = useParams();
-
-  const serializers = {
-    types: {
-      code: (props) => (
-        <div>
-          {console.log(props.node.code)}
-          <pre data-language={props.node.language}>
-            {Prism.highlight(
-              props.node.code,
-              Prism.languages.javascript,
-              "javascript"
-            )}
-          </pre>
-        </div>
-      ),
-    },
-  };
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `
-            *[slug.current == "${slug}"]{
-                title,
-                _id,
-                slug,
-                demoLink,
-                codeLink,
-                status,
-                tags,
-                mainImage{
-                    asset->{
-                        _id,
-                        url
-                    }
-                },
-                publishedAt,
-                description,
-                expandedDescription,
-                body,
-                
-            }`
-      )
-      .then((data) => setPostData(data[0]))
-      .catch(console.error);
-  }, [slug]);
-
-  if (!postData) return <div>Loading...</div>;
+ 
 
   return (
     <main>
-      {/* <Link to="/blog/"> Back to Blog</Link> */}
-      <ArticleStyle>
-        <article>
-          <header>
-            <div>
-              <div>
-                {/* <div>
-                                <img src={urlFor(postData.authorImage).url()} alt={postData.name} />
-                                <p >{postData.name}</p>
-                            </div> */}
-              </div>
-            </div>
-
-            <div className="imageContainer">
+     
+     <div className="imageContainer">
               <img
                 loading="lazy"
                 className="mainImage"
-                src={postData.mainImage.asset.url}
-                alt={postData.title}
+                src=''
+                alt=''
               ></img>
 
               <svg width="300" height="100" className="imageBorderLeft">
@@ -420,49 +337,13 @@ export default function SingleProject() {
               </svg>
             </div>
 
-            <h1 className="postTitle">{postData.title}</h1>
 
-            <div className="linkContainer">
-              <a
-                className={`codeLink ${postData.codeLink}`}
-                href={postData.codeLink}
-                target="blank"
-                rel="noopener noreferrer"
-              >
-                Code
-              </a>
 
-              <a
-                className={`demoLink ${postData.demoLink}`}
-                href={postData.demoLink}
-                target="blank"
-                rel="noopener noreferrer"
-              >
-                Demo
-              </a>
 
-              <h6 className="date">{postData.publishedAt}</h6>
-            </div>
+    Hello world
 
-            <p className="description">{postData.expandedDescription}</p>
-            <hr className="divider" />
-            <h6 className="tags">{postData.tags}</h6>
-          </header>
 
-          <section>
-            <div>
-              <BlockContent
-                blocks={postData.body}
-                projectId="7vjlc1ik"
-                dataset="production"
-                serializers={serializers}
-              />
-            </div>
-          </section>
-        </article>
-      </ArticleStyle>
 
-      <BottomStyle></BottomStyle>
     </main>
   );
 }

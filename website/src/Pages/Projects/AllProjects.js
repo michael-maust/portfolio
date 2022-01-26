@@ -270,8 +270,8 @@ const AllProjects = () => {
             {allPostsData &&
               allPostsData
                 .map((project, index) => (
-                  <div className="projectCards">
-                    <span key={index} className="cardContent">
+                  <div key={index} className="projectCards">
+                    <span className="cardContent">
                       <img
                         className="mainImage"
                         src={project.mainImage.asset.url}

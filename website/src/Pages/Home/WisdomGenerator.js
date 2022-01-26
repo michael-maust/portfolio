@@ -20,7 +20,6 @@ const Wrapper = styled.div`
     width: max(50%, 250px);
     max-width: 300px;
     margin: 20px 20px 20px 20px;
-   
   }
 
   .topContainer {
@@ -145,15 +144,13 @@ const Wrapper = styled.div`
 
     &:hover {
       transform: scale(1.05);
-     
+
       color: ${(props) => props.theme.colors.tan};
     }
   }
 `;
 
 function randomNumber() {
-  console.log("ran");
-
   var lastNum,
     max = quotes.length,
     random;
@@ -161,7 +158,6 @@ function randomNumber() {
   random = Math.floor(Math.random() * max);
 
   while (lastNum !== random) {
-    console.log(random);
     return random;
   }
 
