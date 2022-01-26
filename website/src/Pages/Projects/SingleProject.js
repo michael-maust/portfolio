@@ -6,27 +6,20 @@ import BlockContent from "@sanity/block-content-to-react";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 
-
-
 import Prism from "prismjs";
 
 const ArticleStyle = styled.div`
-
-* {
+  * {
     margin: 0px;
     padding: 0px;
   }
 
-
-
-article {
-
-  position: relative;
-  margin-top: clamp(180px, 20vh, 200px);
-}
-
-
-
+  article {
+    position: relative;
+    margin-top: clamp(180px, 20vh, 200px);
+    width: 100vw;
+    overflow: hidden;
+  }
 
   position: relative;
   display: flex;
@@ -42,13 +35,9 @@ article {
     margin-bottom: 200px;
   }
 
- 
-
   .latestPosts {
     margin-bottom: 200px;
   }
-
-
 
   article {
     width: clamp(150px, 80vw, 1000px);
@@ -123,26 +112,15 @@ article {
     box-shadow: ${(props) => props.theme.shadow.box};
   }
 
-  .tags {
-    width: auto;
-    color: ${(props) => props.theme.colors.blue};
-  }
-
-  .divider {
-    position: relative;
-    height: inherit;
-    width: 5px;
-    background: ${(props) => props.theme.colors.charcoal};
-    border: none;
-    border-radius: 5px;
-    margin: 0px 0px 0px 0px;
-    padding: 0px;
-  }
+  
 
   .date {
     color: ${(props) => props.theme.colors.tan};
     font-weight: lighter;
     width: auto;
+    font-size: clamp(1rem, -0.875rem + 2vw, 1.2rem);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   h1,
@@ -204,7 +182,7 @@ article {
 
   p {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     margin: 20px 0px 30px 0px;
 
     & code {
@@ -216,7 +194,7 @@ article {
 
   a {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     font-weight: bold;
     text-decoration-color: ${(props) => props.theme.colors.orange};
   }
@@ -224,7 +202,7 @@ article {
   ol,
   ul {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     margin-left: min(15%, 80px);
   }
 
@@ -232,7 +210,7 @@ article {
     position: relative;
     font-family: ${(props) => props.theme.fonts.secondary};
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     padding: 20px 0% 30px 5%;
     display: inline-flex;
     max-width: 700px;
@@ -256,71 +234,115 @@ article {
     box-shadow: ${(props) => props.theme.shadow.box};
   }
 
+  hr {
+    background-color: ${(props) => props.theme.colors.charcoal};
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 7px;
+    margin: 10px;
+  }
 
-  
+  .linkContainer {
+    width: max-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: ${(props) => props.theme.colors.darkGray};
+    font-weight: 700;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0px 20px 0px 20px;
+  }
+
+  .codeLink,
+  .demoLink,
+  .detailsLink {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: clamp(1rem, -0.875rem + 2vw, 1.2rem);
+    text-decoration: none;
+
+    color: ${(props) => props.theme.colors.lightBlue};
+    text-transform: uppercase;
+    transition: ease-in-out 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      color: ${(props) => props.theme.colors.blue};
+    }
+  }
+
+  .codeLink,
+  .demoLink {
+    &:after {
+      content: "|";
+      color: ${(props) => props.theme.colors.charcoal};
+      padding-left: 5px;
+      position: absolute;
+      font-weight: 700;
+    }
+  }
+
+  .null {
+    display: none;
+  }
+
+  .tags {
+    margin-top: 5px;
+    font-weight: 700;
+    color: ${(props) => props.theme.colors.orange};
+    text-transform: lowercase;
+    font-size: ${(props) => props.theme.fontSizes.para2};
+ 
+    margin-bottom: 10px;
+    
+
+
+  }
+
+  .divider {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 0px;
+    width: 40%;
+    height: 10px;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    border: none;
+    border-radius: 20px;
+  }
+
+
 `;
 
-
 const BottomStyle = styled.div`
-
-
-
-* {
+  * {
     margin: 0px;
     padding: 0px;
   }
 
+  position: relative;
 
-
-position: relative;
-
- 
   align-items: center;
   justify-content: center;
 
+  hr {
+    position: relative;
 
-
-
-
-hr {
-  position: relative;
- 
-
-
- margin-top: clamp(70px, 10vh, 120px);
- margin-bottom: clamp(70px, 10vh, 120px);
- margin-left: auto;
- margin-right: auto;
-  width: 40%;
-  max-width: 500px;
-  height: 10px;
-  background-color: ${(props) => props.theme.colors.darkGray};
-  border: none;
-  border-radius: 20px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-`
-
-
-
-
-
-
-
-
-
-
+    margin-top: clamp(70px, 10vh, 120px);
+    margin-bottom: clamp(70px, 10vh, 120px);
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    max-width: 500px;
+    height: 10px;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    border: none;
+    border-radius: 20px;
+  }
+`;
 
 export default function SingleProject() {
   const [postData, setPostData] = useState(null); // initial state is null
@@ -350,6 +372,10 @@ export default function SingleProject() {
                 title,
                 _id,
                 slug,
+                demoLink,
+                codeLink,
+                status,
+                tags,
                 mainImage{
                     asset->{
                         _id,
@@ -358,8 +384,9 @@ export default function SingleProject() {
                 },
                 publishedAt,
                 description,
+                expandedDescription,
                 body,
-                "tags": category->title
+                
             }`
       )
       .then((data) => setPostData(data[0]))
@@ -368,14 +395,12 @@ export default function SingleProject() {
 
   if (!postData) return <div>Loading...</div>;
 
-  console.log(postData.tags);
+ 
   return (
-   
-      <main>
-        {/* <Link to="/blog/"> Back to Blog</Link> */}
-        <ArticleStyle>
+    <main>
+      {/* <Link to="/blog/"> Back to Blog</Link> */}
+      <ArticleStyle>
         <article>
-        
           <header>
             <div>
               <div>
@@ -388,7 +413,7 @@ export default function SingleProject() {
 
             <div className="imageContainer">
               <img
-              loading='lazy'
+                loading="lazy"
                 className="mainImage"
                 src={postData.mainImage.asset.url}
                 alt={postData.title}
@@ -405,13 +430,31 @@ export default function SingleProject() {
 
             <h1 className="postTitle">{postData.title}</h1>
 
-            <div className="detailContainer">
-              <h6 className="tags">#{postData.tags}</h6>
-              <hr className="divider" />
+            <div className="linkContainer">
+              <a
+                className={`codeLink ${postData.codeLink}`}
+                href={postData.codeLink}
+                target="blank"
+                rel="noopener noreferrer"
+              >
+                Code
+              </a>
+
+              <a
+                className={`demoLink ${postData.demoLink}`}
+                href={postData.demoLink}
+                target="blank"
+                rel="noopener noreferrer"
+              >
+                Demo
+              </a>
+
               <h6 className="date">{postData.publishedAt}</h6>
             </div>
 
-            <p className="description">{postData.description}</p>
+            <p className="description">{postData.expandedDescription}</p>
+            <hr className="divider" />
+            <h6 className="tags">{postData.tags}</h6>
           </header>
 
           <section>
@@ -425,23 +468,11 @@ export default function SingleProject() {
             </div>
           </section>
         </article>
-        </ArticleStyle>
+      </ArticleStyle>
 
-
-
-          <BottomStyle>
-
-          <hr />
-
+      <BottomStyle>
         
-
-        <hr />
-
-        </BottomStyle>
-
-
-
-      </main>
-    
+      </BottomStyle>
+    </main>
   );
 }

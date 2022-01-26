@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import sanityClient from "../../client.js";
 import styled from "styled-components";
+import touchIcon from "../../media/touchIcon.svg";
 
 const Wrapper = styled.div`
   font-family: ${(props) => props.theme.fonts.primary};
@@ -37,7 +38,7 @@ const Wrapper = styled.div`
     font-weight: bold;
     font-size: calc(1.6rem + 0.8vw);
 
-    margin-bottom: 20px;
+    margin-top: 10px;
   }
 
   .postContainer {
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
     gap: 30px;
   }
 
@@ -64,6 +65,21 @@ const Wrapper = styled.div`
       transform: scale(1.02);
     }
   }
+
+  .touchIcon {
+      position: absolute;
+      z-index: 500px;
+      padding: 0px;
+      margin: 5px 5px auto auto;
+      width: 25px;
+      bottom: 10px;
+      right: 10px;
+      
+    }
+
+
+
+
 
   .mainImage {
     position: relative;
@@ -107,6 +123,7 @@ const Wrapper = styled.div`
     overflow: hidden;
 
     font-size: clamp(1.2rem, -0.875rem + 2.333vh, 1.4rem);
+    
   }
 
   hr {
@@ -236,6 +253,7 @@ const LatestPosts = () => {
                       <div className="contentContainer">
                         <h6 className="date">{post.publishedAt}</h6>
                         <h6 className="tags">#{post.tags}</h6>
+                        <img className="touchIcon" src={touchIcon} alt="" />
                       </div>
                     </span>
                   </Link>

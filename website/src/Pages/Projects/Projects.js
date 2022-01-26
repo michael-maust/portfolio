@@ -1,13 +1,17 @@
 import React from 'react';
 import Styled from 'styled-components';
 
+import AllProjects from './AllProjects';
+
+
+
 const Wrapper = Styled.div`
 
 body {
     background-color: red;
 }
 
-padding-top: 100px;
+
 font-weight: 200px;
 display: flex;
 justify-content: center;
@@ -31,7 +35,10 @@ const Projects = () => {
   return (
     <Wrapper>
       <div>
-        <h1> This is the portfolio page.</h1>
+        
+
+
+      <AllProjects />
 
 
       </div>

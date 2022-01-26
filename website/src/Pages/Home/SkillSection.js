@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import skillsArray from "./SkillsArray";
-import InfoIcon from "../../media/InfoIcon.svg";
+import touchIcon from "../../media/touchIcon.svg";
 
 const Wrapper = styled.div`
   position: relative;
@@ -69,11 +69,15 @@ const Wrapper = styled.div`
       transform: scale(1.05);
     }
 
-    .InfoIcon {
-      position: relative;
+    .touchIcon {
+      position: absolute;
       z-index: 500px;
       padding: 0px;
       margin: 5px 5px auto auto;
+      width: 25px;
+      bottom: 10px;
+      right: 10px;
+      
     }
   }
 
@@ -96,6 +100,7 @@ const Wrapper = styled.div`
     padding: 0px;
     color: ${(props) => props.theme.colors.orange};
     font-weight: bold;
+   
     font-size: 1.1rem;
   }
 
@@ -258,7 +263,7 @@ const SkillSection = () => {
         <p className="skillName">{skill.name}</p>
         <div className="skillExperience">{skill.experience}</div>
       </div>
-      <img className="InfoIcon" src={InfoIcon} alt="" />
+      <img className="touchIcon" src={touchIcon} alt="" />
     </div>
   ));
 

@@ -11,22 +11,15 @@ import LatestPosts from "./latestPosts";
 import Prism from "prismjs";
 
 const ArticleStyle = styled.div`
-
-* {
+  * {
     margin: 0px;
     padding: 0px;
   }
 
-
-
-article {
-
-  position: relative;
-  margin-top: clamp(180px, 20vh, 200px);
-}
-
-
-
+  article {
+    position: relative;
+    margin-top: clamp(180px, 20vh, 200px);
+  }
 
   position: relative;
   display: flex;
@@ -42,13 +35,9 @@ article {
     margin-bottom: 200px;
   }
 
- 
-
   .latestPosts {
     margin-bottom: 200px;
   }
-
-
 
   article {
     width: clamp(150px, 80vw, 1000px);
@@ -126,6 +115,7 @@ article {
   .tags {
     width: auto;
     color: ${(props) => props.theme.colors.blue};
+    font-size: ${(props) => props.theme.fontSizes.para2};
   }
 
   .divider {
@@ -143,6 +133,7 @@ article {
     color: ${(props) => props.theme.colors.tan};
     font-weight: lighter;
     width: auto;
+    font-size: ${(props) => props.theme.fontSizes.para2};
   }
 
   h1,
@@ -204,7 +195,7 @@ article {
 
   p {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     margin: 20px 0px 30px 0px;
 
     & code {
@@ -216,7 +207,7 @@ article {
 
   a {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     font-weight: bold;
     text-decoration-color: ${(props) => props.theme.colors.orange};
   }
@@ -224,7 +215,7 @@ article {
   ol,
   ul {
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     margin-left: min(15%, 80px);
   }
 
@@ -232,7 +223,7 @@ article {
     position: relative;
     font-family: ${(props) => props.theme.fonts.secondary};
     color: ${(props) => props.theme.colors.tan};
-    font-size: 1.6rem;
+    font-size: ${(props) => props.theme.fontSizes.para2};
     padding: 20px 0% 30px 5%;
     display: inline-flex;
     max-width: 700px;
@@ -255,72 +246,31 @@ article {
     margin: 20px 0 20px 0;
     box-shadow: ${(props) => props.theme.shadow.box};
   }
-
-
-  
 `;
 
-
 const BottomStyle = styled.div`
-
-
-
-* {
+  * {
     margin: 0px;
     padding: 0px;
   }
 
-
-
-position: relative;
-
- 
-  align-items: center;
-  justify-content: center;
-
-
-
-
-
-hr {
-  position: relative;
  
 
+  .divider {
+    position: relative;
 
- margin-top: clamp(70px, 10vh, 120px);
- margin-bottom: clamp(70px, 10vh, 120px);
- margin-left: auto;
- margin-right: auto;
-  width: 40%;
-  max-width: 500px;
-  height: 10px;
-  background-color: ${(props) => props.theme.colors.darkGray};
-  border: none;
-  border-radius: 20px;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-`
-
-
-
-
-
-
-
-
-
-
+    margin-top: clamp(70px, 10vh, 120px);
+    margin-bottom: clamp(70px, 10vh, 120px);
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    max-width: 500px;
+    height: 10px;
+    background-color: ${(props) => props.theme.colors.darkGray};
+    border: none;
+    border-radius: 20px;
+  }
+`;
 
 export default function SinglePost() {
   const [postData, setPostData] = useState(null); // initial state is null
@@ -370,12 +320,10 @@ export default function SinglePost() {
 
   console.log(postData.tags);
   return (
-   
-      <main>
-        {/* <Link to="/blog/"> Back to Blog</Link> */}
-        <ArticleStyle>
+    <main>
+      {/* <Link to="/blog/"> Back to Blog</Link> */}
+      <ArticleStyle>
         <article>
-        
           <header>
             <div>
               <div>
@@ -424,25 +372,17 @@ export default function SinglePost() {
             </div>
           </section>
         </article>
-        </ArticleStyle>
+      </ArticleStyle>
 
-
-
-          <BottomStyle>
-
-          <hr />
+      <BottomStyle>
+        <hr className='divider' />
 
         <div className="latestPosts">
           <LatestPosts />
         </div>
 
-        <hr />
-
-        </BottomStyle>
-
-
-
-      </main>
-    
+        <hr className='divider'/>
+      </BottomStyle>
+    </main>
   );
 }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef, cloneElement} from "react";
 import styled from "styled-components";
 import testimonialArray from "./testimonialArray";
+import touchIcon from "../../media/touchIcon.svg";
 
 const Wrapper = styled.div`
   * {
@@ -25,6 +26,7 @@ const Wrapper = styled.div`
     background-color: ${(props) => props.theme.colors.darkGray};
     padding: 10px 0px 10px 0px;
     box-shadow: ${(props) => props.theme.shadow.box};
+    overflow: hidden;
   }
 
   .container {
@@ -34,7 +36,7 @@ const Wrapper = styled.div`
     justify-content: center;
 
     height: auto;
-    padding: 30px 20px 30px 20px;
+    padding: 30px 0px 30px 0px;
     margin: 0 auto;
   }
 
@@ -74,10 +76,22 @@ const Wrapper = styled.div`
     border-radius: 25px;
     width: clamp(180px, 70vw, 600px);
     padding: 30px;
+    height: auto;
     
     box-shadow: ${(props) => props.theme.shadow.box};
     transition: ease-in-out 0.5s;
+    
   }
+
+  .touchIcon {
+      position: absolute;
+      z-index: 500px;
+      padding: 0px;
+      margin: 5px 5px auto auto;
+      width: 25px;
+      top: 10px;
+      right: 10px;
+    }
 
   .testimonialPicture {
     width: auto;
@@ -141,7 +155,7 @@ const Wrapper = styled.div`
 
   .seeMore {
     color: ${(props) => props.theme.colors.lightBlue};
-    font-size: ${(props) => props.theme.fontSizes.para};
+    font-size: ${(props) => props.theme.fontSizes.para2};
     font-weight: 500;
     position: absolute;
     width: max-content;
@@ -158,8 +172,9 @@ const Wrapper = styled.div`
     justify-content: center;
     gap: 30px;
     height: 300px;
-    width: 10vw;
-    
+    width: 50px;
+  
+  
   }
 
   .overflowContainer {
@@ -204,21 +219,26 @@ const Wrapper = styled.div`
   }
 
   .prevCard {
-    left: calc(0% + 2rem);
+    left: 100%;
     opacity: 0;
+    transition: ease-in-out .9s;
+    
   }
 
   .activeCard {
     left: 50%;
     transform: translateX(-50%);
+    transition: ease-in-out .9s;
     z-index: 100;
     cursor: pointer;
   }
 
   .nextCard {
     left: 100%;
-    transform: translateX(calc(-100% - 2rem));
+    transform: translateX(-100%);
+    transition: ease-in-out .9s;
     opacity: 0;
+    
   }
 
   .showOnMobile {
@@ -403,6 +423,7 @@ const Testimonials = () => {
         }}
       >
         <div className="testimonialDetails">
+          
           <img
             className="testimonialPicture"
             src={testimonial.picture}
@@ -412,11 +433,15 @@ const Testimonials = () => {
             <p className="recommenderName">{testimonial.name}</p>
             <p className="position hideOnMobile">{testimonial.position}</p>
           </div>
+          
         </div>
+        
         <p className="position showOnMobile">{testimonial.position}</p>
         <p className="recommendation">{testimonial.recommendation}</p>
         <p className="seeMore">...see more</p>
+        <img className="touchIcon" src={touchIcon} alt="" />
       </div>
+      
     );
   });
 

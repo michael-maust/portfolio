@@ -23,7 +23,13 @@ export default {
       title: 'Description',
       type: 'string',
       rows: '10',
-      
+    },
+
+    {
+      name: 'expandedDescription',
+      title: 'Expanded Description',
+      type: 'string',
+      rows: '10',
     },
 
     {

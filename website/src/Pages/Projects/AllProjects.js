@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   }
 
   .projectComponent {
+    margin-top: 200px;
     background-color: ${(props) => props.theme.colors.darkGray};
     border-radius: 25px;
     height: auto;
@@ -224,13 +225,13 @@ const Wrapper = styled.div`
 
 `;
 
-const LatestProjects = () => {
+const AllProjects = () => {
   const [allPostsData, setAllPosts] = useState(null);
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "project" && status == "featured"]  {
+        `*[_type == "project" ]  {
         title,
         slug,
         demoLink,
@@ -317,13 +318,11 @@ const LatestProjects = () => {
                 .reverse()}
           </div>
 
-          <Link to={"/projects/"} className="moreButton">
-            SEE MORE {'>'}
-          </Link>
+          
         </div>
       </div>
     </Wrapper>
   );
 };
 
-export default LatestProjects;
+export default AllProjects;
