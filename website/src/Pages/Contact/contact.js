@@ -1,6 +1,10 @@
 import React from 'react';
 import Styled from 'styled-components';
 
+import ContactMe from './ContactMe';
+
+
+
 const Wrapper = Styled.div`
 
 body {
@@ -27,12 +31,22 @@ h1 {
 
 `;
 
+
+
+
+
 const contact = () => {
+
+
+
+
   return (
     <Wrapper>
       <div>
         <h1> This is the blog page.</h1>
 
+        
+<ContactMe />
 
       </div>
     </Wrapper>

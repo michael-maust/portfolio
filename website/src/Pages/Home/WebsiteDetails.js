@@ -104,7 +104,7 @@ const WebsiteDetails = () => {
               This portfolio is the culmination of my programming and web design
               skills. Before coding, I designed the prototype in Adobe XD. I
               used JavaScript, React, vanilla CSS, and as few dependencies as
-              possible. The site is hosted on Google Firebase. For a deep dive
+              possible. The site is hosted with Google Firebase. For a deep dive
               behind the scenes, check out my{" "}
               <a
                 href="https://github.com/michael-maust/portfolio"
