@@ -1,7 +1,8 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-import ContactMe from './ContactMe';
+
+import ContactForm from './ContactForm';
 
 
 
@@ -11,8 +12,8 @@ body {
     background-color: red;
 }
 
-padding-top: 100px;
-font-weight: 200px;
+padding-top: 150px;
+margin-bottom: 0px;
 display: flex;
 justify-content: center;
 width: 100%;
@@ -26,6 +27,10 @@ h1 {
 
 }
 
+
+hr {
+  visibility: hidden;
+}
 
 
 
@@ -43,10 +48,10 @@ const contact = () => {
   return (
     <Wrapper>
       <div>
-        <h1> This is the blog page.</h1>
+       
 
         
-<ContactMe />
+<ContactForm />
 
       </div>
     </Wrapper>

@@ -2,6 +2,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 import AllProjects from './AllProjects';
+import ContactForm from '../Contact/ContactForm';
 
 
 

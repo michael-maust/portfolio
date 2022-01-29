@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import React from "react";
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import React, {useEffect} from "react";
+import {Route, BrowserRouter as Router, Routes, useLocation} from "react-router-dom";
 
 import "./App.css";
 import Theme from "./Theme";
@@ -18,15 +18,53 @@ import SingleProject from "./Pages/Projects/SingleProject";
 
 const Wrapper = styled.div`
 
+.centerSpacing {
+    padding-top: 150px;
+  }
 
-.pages{
-  
+
+  .pages {
+    margin-bottom: 100px;
+  }
+
+
+  .disable-select {
+    user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
 }
+
+
 
 
 `;
 
+
+
+
+export function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+
+
+
 function App() {
+
+
+   
+  
+
+
+  
   return (
     <Theme>
       <Wrapper>
@@ -34,7 +72,7 @@ function App() {
           <div className="app">
             <Navbar />
 
-
+          <ScrollToTop />
           <div className="pages">
             <Routes>
               <Route exact path="/" element={<Home />} />
@@ -48,7 +86,7 @@ function App() {
 
             </div>
 
-
+            <div className="centerSpacing"></div>
             <Footer />
           </div>
         </Router>

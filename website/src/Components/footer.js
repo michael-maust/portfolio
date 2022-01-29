@@ -14,9 +14,9 @@ const Wrapper = Styled.div`
 
 
 .footer {
-        margin-top: 100px;
+        
         position: relative;
-        bottom: 0px;
+       
         width: 100%;
         height: auto;
         background-color: ${(props) => props.theme.colors.darkGray};

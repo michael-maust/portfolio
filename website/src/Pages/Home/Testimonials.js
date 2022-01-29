@@ -77,21 +77,20 @@ const Wrapper = styled.div`
     width: clamp(180px, 70vw, 600px);
     padding: 30px;
     height: auto;
-    
+
     box-shadow: ${(props) => props.theme.shadow.box};
     transition: ease-in-out 0.5s;
-    
   }
 
   .touchIcon {
-      position: absolute;
-      z-index: 500px;
-      padding: 0px;
-      margin: 5px 5px auto auto;
-      width: 25px;
-      top: 10px;
-      right: 10px;
-    }
+    position: absolute;
+    z-index: 500px;
+    padding: 0px;
+    margin: 5px 5px auto auto;
+    width: 25px;
+    top: 10px;
+    right: 10px;
+  }
 
   .testimonialPicture {
     width: auto;
@@ -173,13 +172,10 @@ const Wrapper = styled.div`
     gap: 30px;
     height: 300px;
     width: 50px;
-  
-  
   }
 
   .overflowContainer {
     position: relative;
-   
   }
 
   .paginator {
@@ -218,27 +214,25 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
 
-  .prevCard {
+  .nextCard {
     left: 100%;
     opacity: 0;
-    transition: ease-in-out .9s;
-    
+    transition: ease-in-out 0.9s;
   }
 
   .activeCard {
     left: 50%;
     transform: translateX(-50%);
-    transition: ease-in-out .9s;
+    transition: ease-in-out 0.9s;
     z-index: 100;
     cursor: pointer;
   }
 
-  .nextCard {
+  .prevCard {
     left: 100%;
     transform: translateX(-100%);
-    transition: ease-in-out .9s;
+    transition: ease-in-out 0.9s;
     opacity: 0;
-    
   }
 
   .showOnMobile {
@@ -348,11 +342,6 @@ const ModalStyle = styled.div`
       border: 2px solid ${(props) => props.theme.colors.darkGray};
     }
   }
-
-
-
-
-
 `;
 
 const Testimonials = () => {
@@ -377,8 +366,6 @@ const Testimonials = () => {
     if (index > 0) {
       setIndex(index - 1);
       console.log(index);
-    } else {
-      setIndex(testimonialArray.length - 1);
     }
   };
 
@@ -387,8 +374,6 @@ const Testimonials = () => {
     console.log(index);
     if (index + 1 <= testimonialArray.length - 1) {
       setIndex(index + 1);
-    } else {
-      setIndex(0);
     }
   };
 
@@ -397,7 +382,7 @@ const Testimonials = () => {
 
     return (
       <div
-        className={`paginatorCircles ${pageinatorStatus}`}
+        className={`paginatorCircles  ${pageinatorStatus}`}
         key={testimonial.index}
         onClick={() => setIndex(currentIndex)}
       ></div>
@@ -416,14 +401,13 @@ const Testimonials = () => {
 
     return (
       <div
-        className={`testimonialCard ${position}`}
+        className={`testimonialCard  ${position}`}
         key={testimonial.index}
         onClick={() => {
           modalGenerator(activeModal, currentIndex);
         }}
       >
         <div className="testimonialDetails">
-          
           <img
             className="testimonialPicture"
             src={testimonial.picture}
@@ -433,15 +417,13 @@ const Testimonials = () => {
             <p className="recommenderName">{testimonial.name}</p>
             <p className="position hideOnMobile">{testimonial.position}</p>
           </div>
-          
         </div>
-        
+
         <p className="position showOnMobile">{testimonial.position}</p>
         <p className="recommendation">{testimonial.recommendation}</p>
         <p className="seeMore">...see more</p>
         <img className="touchIcon" src={touchIcon} alt="" />
       </div>
-      
     );
   });
 
@@ -460,10 +442,10 @@ const Testimonials = () => {
             </p>
 
             <div className="overflowContainer">
-              <div className="cardContainer">{generateCards}</div>
+              <div className="cardContainer ">{generateCards}</div>
             </div>
 
-            <div className="paginator">
+            <div className="paginator ">
               <svg
                 className="slideLeft"
                 xmlns="http://www.w3.org/2000/svg"

@@ -11,6 +11,7 @@ import LatestProjects from "../Projects/LatestProjects";
 import SkillSection from "./SkillSection";
 import LatestPosts from "../Blog/latestPosts";
 import Testimonials from "./Testimonials";
+import ContactForm from "../Contact/ContactForm";
 
 
 
@@ -51,7 +52,7 @@ const Wrapper = Styled.div`
   }
 
   .bottomSpacing {
-    padding-top: 400px;
+    padding-top: 50px;
   }
 
 
@@ -105,7 +106,13 @@ const home = () => {
 
         <LatestPosts />
 
+        <div className="centerSpacing"></div>
+
+        <ContactForm />
+
         <div className="bottomSpacing"></div>
+
+       
 
       </Wrapper>
     </div>
