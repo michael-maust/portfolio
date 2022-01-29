@@ -1,88 +1,54 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-
-
-
-import {Link} from "react-router-dom";
 import styled from "styled-components";
 
-import Prism from "prismjs";
 
-const ArticleStyle = styled.div`
+import CoverPicture from "../../media/CoverPicture.png";
+import ContactForm from "../Contact/ContactForm";
+
+const Wrapper = styled.div`
   * {
     margin: 0px;
     padding: 0px;
   }
 
-  article {
+  main {
     position: relative;
-    margin-top: clamp(180px, 20vh, 200px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    font-family: ${(props) => props.theme.fonts.primary};
     width: 100vw;
-    overflow: hidden;
+    
+
   }
 
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+ .content {
 
-  font-family: ${(props) => props.theme.fonts.primary};
+  max-width: 80vw;
 
-  /* background: lightgray; */
-
-  .latestPosts {
-    margin-bottom: 200px;
-  }
-
-  .latestPosts {
-    margin-bottom: 200px;
-  }
-
-  article {
-    width: clamp(150px, 80vw, 1000px);
-    /* background: gray; */
-    padding: 20px;
-  }
+ }
 
   .imageContainer {
     position: relative;
     display: flex;
     width: clamp(100px, 80vw, 1000px);
-    height: clamp(200px, 25vh, 400px);
+    height: clamp(100px, 30vw, 230px);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   svg {
-    width: clamp(200px, 70%, 600px);
-    height: clamp(100px, 60%, 200px);
+    width: clamp(200px, 90%, 600px);
+    height: clamp(100px, 80%, 200px);
     z-index: -300;
     box-shadow: ${(props) => props.theme.shadow.box};
-  }
-
-  .imageBorderLeft {
-    position: absolute;
-    top: -17px;
-    left: -17px;
-
-    border-radius: 20px 100px 20px 40px;
-    fill: ${(props) => props.theme.colors.orange};
-  }
-
-  .imageBorderRight {
-    position: absolute;
-    bottom: -17px;
-    right: -17px;
-
-    border-radius: 20px 40px 20px 100px;
-    fill: ${(props) => props.theme.colors.blue};
   }
 
   .mainImage {
     width: 100%;
     height: 100%;
+    object-position: center right;
     object-fit: cover;
     border-radius: 20px;
     position: relative;
@@ -91,103 +57,40 @@ const ArticleStyle = styled.div`
     box-shadow: ${(props) => props.theme.shadow.box};
   }
 
-  .postTitle {
-    font-size: clamp(2rem, -0.675rem + 6.333vw, 3.2rem);
-
-    font-weight: bold;
-    color: ${(props) => props.theme.colors.tan};
-    margin: 50px 0px 20px 0px;
+  .imageBorderLeft {
+    position: absolute;
+    top: -17px;
+    left: -17px;
+    border-radius: 20px 100px 20px 40px;
+    fill: ${(props) => props.theme.colors.orange};
   }
 
-  .detailContainer {
-    padding: 10px 15px 10px 15px;
-    margin: 0px 0px 10px 0px;
-    flex-wrap: wrap;
-    display: inline-flex;
-    align-items: left;
-    flex-direction: row;
-    gap: 10px;
-    border-radius: 10px;
-    background-color: ${(props) => props.theme.colors.darkGray};
-    box-shadow: ${(props) => props.theme.shadow.box};
-  }
-
-  .date {
-    color: ${(props) => props.theme.colors.tan};
-    font-weight: lighter;
-    width: auto;
-    font-size: clamp(1rem, -0.875rem + 2vw, 1.2rem);
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    color: ${(props) => props.theme.colors.tan};
-    text-transform: uppercase;
-    position: relative;
-
-    &:not(.postTitle) {
-      position: relative;
-      display: inline-block;
-      margin: 30px 0px 10px 0px;
-      font-weight: bold;
-      background-color: ${(props) => props.theme.colors.blue};
-      border-radius: 10px;
-      padding: 0px 15px 0px 15px;
-      display: inline-block;
-
-      /* TODO: fix horizontal sizing issue multiple lines */
-      /* &:before {
-        content: "";
-        z-index: -1;
-        left: -0.2em;
-        display: inline-block;
-        top: 0.45em;
-        border-width: 0.45em;
-        border-style: solid;
-        border-radius: 5px;
-        border-color: ${(props) => props.theme.colors.blue};
-        position: absolute;
-        width: 100%;
-      } */
-    }
+  .imageBorderRight {
+    position: absolute;
+    bottom: -17px;
+    right: -17px;
+    border-radius: 20px 40px 20px 100px;
+    fill: ${(props) => props.theme.colors.blue};
   }
 
   h1 {
-    font-size: clamp(1.9rem, -0.875rem + 8.333vw, 2.3rem);
-  }
-
-  h2 {
-    font-size: clamp(1.8rem, -0.875rem + 8.333vw, 2rem);
-  }
-
-  h3 {
-    font-size: clamp(1.7rem, -0.875rem + 8.333vw, 1.8rem);
-  }
-
-  h4 {
-    font-size: clamp(1.4rem, -0.875rem + 8.333vw, 1.5rem);
-  }
-
-  h6 {
-    font-size: clamp(1rem, -0.875rem + 8.333vw, 1.5rem);
-    margin: 0px;
+    margin-top: 50px;
+    color: ${(props) => props.theme.colors.tan};
+    text-transform: uppercase;
+    position: relative;
+    font-size: clamp(2rem, -0.675rem + 6.333vw, 3.2rem);
   }
 
   p {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    text-align: left;
+    font-size: ${(props) => props.theme.fontSizes.para};
     color: ${(props) => props.theme.colors.tan};
-    font-size: ${(props) => props.theme.fontSizes.para2};
-    margin: 20px 0px 30px 0px;
-
-    & code {
-      background-color: ${(props) => props.theme.colors.darkGray};
-      border-radius: 7px;
-      padding: 2px 10px 2px 10px;
-    }
+    white-space: pre-line;
   }
 
   a {
@@ -195,107 +98,6 @@ const ArticleStyle = styled.div`
     font-size: ${(props) => props.theme.fontSizes.para2};
     font-weight: bold;
     text-decoration-color: ${(props) => props.theme.colors.orange};
-  }
-
-  ol,
-  ul {
-    color: ${(props) => props.theme.colors.tan};
-    font-size: ${(props) => props.theme.fontSizes.para2};
-    margin-left: min(15%, 80px);
-  }
-
-  blockquote {
-    position: relative;
-    font-family: ${(props) => props.theme.fonts.secondary};
-    color: ${(props) => props.theme.colors.tan};
-    font-size: ${(props) => props.theme.fontSizes.para2};
-    padding: 20px 0% 30px 5%;
-    display: inline-flex;
-    max-width: 700px;
-
-    &:before {
-      content: "";
-      border-left: 8px solid ${(props) => props.theme.colors.darkGray};
-      border-radius: 5px;
-      position: relative;
-      display: inline-flex;
-      margin-right: 30px;
-    }
-  }
-
-  img:not(.mainImage) {
-    border-radius: 20px;
-    position: relative;
-    width: 95%;
-    max-width: 700px;
-    margin: 20px 0 20px 0;
-    box-shadow: ${(props) => props.theme.shadow.box};
-  }
-
-  hr {
-    background-color: ${(props) => props.theme.colors.charcoal};
-    border: none;
-    border-radius: 20px;
-    width: 200px;
-    height: 7px;
-    margin: 10px;
-  }
-
-  .linkContainer {
-    width: max-content;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background: ${(props) => props.theme.colors.darkGray};
-    font-weight: 700;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 0px 20px 0px 20px;
-  }
-
-  .codeLink,
-  .demoLink,
-  .detailsLink {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: clamp(1rem, -0.875rem + 2vw, 1.2rem);
-    text-decoration: none;
-
-    color: ${(props) => props.theme.colors.lightBlue};
-    text-transform: uppercase;
-    transition: ease-in-out 0.5s;
-    cursor: pointer;
-
-    &:hover {
-      color: ${(props) => props.theme.colors.blue};
-    }
-  }
-
-  .codeLink,
-  .demoLink {
-    &:after {
-      content: "|";
-      color: ${(props) => props.theme.colors.charcoal};
-      padding-left: 5px;
-      position: absolute;
-      font-weight: 700;
-    }
-  }
-
-  .null {
-    display: none;
-  }
-
-  .tags {
-    margin-top: 5px;
-    font-weight: 700;
-    color: ${(props) => props.theme.colors.orange};
-    text-transform: lowercase;
-    font-size: ${(props) => props.theme.fontSizes.para2};
-
-    margin-bottom: 10px;
   }
 
   .divider {
@@ -308,42 +110,119 @@ const ArticleStyle = styled.div`
     border: none;
     border-radius: 20px;
   }
+
+
+.line-numbers {
+  
+}
+
+
+pre {
+  padding: 40px 0px 40px 50px;
+  margin: 20px 0px 20px 0px;
+  background: ${(props) => props.theme.colors.darkGray};
+  border-radius: 25px;
+  width: clamp(100px, 80%, 1000px);
+  
+  
+  
+  
+
+  &:focus {
+      outline: none;
+    }
+}
+
+
+
+
+code {
+  overflow: auto;
+  font-size: ${(props) => props.theme.fontSizes.para3};
+}
+
+
+
+
+
+.spacing {
+  margin-top: 100px;
+}
+
+
+
 `;
 
 
+
+
+
+
 export default function AboutMe() {
+  const Prism = require('prismjs');
+
   
-
-
  
 
+
+
+
   return (
-    <main>
-     
-     <div className="imageContainer">
-              <img
-                loading="lazy"
-                className="mainImage"
-                src=''
-                alt=''
-              ></img>
+    <Wrapper>
+      <main>
+        <div className="imageContainer">
+          <img loading="lazy" className="mainImage" src={CoverPicture} alt="" />
 
-              <svg width="300" height="100" className="imageBorderLeft">
-                <rect x="0" y="0" width="100%" height="100%" />
-              </svg>
+          <svg width="300" height="100" className="imageBorderLeft">
+            <rect x="0" y="0" width="100%" height="100%" />
+          </svg>
 
-              <svg width="300" height="60" className="imageBorderRight">
-                <rect x="0" y="0" width="100%" height="100%" />
-              </svg>
-            </div>
+          <svg width="300" height="60" className="imageBorderRight">
+            <rect x="0" y="0" width="100%" height="100%" />
+          </svg>
+        </div>
 
+        <div className="content">
+          <h1>ABOUT ME</h1>
 
+          <p>{`Back when I was 624 weeks old (12 years for you normal folk), my mom bought me a Java programming book for my birthday. At the time, I was a big fan of Minecraft and had the idea of developing my own mods for the game.  However, that interest quickly dissipated after I realized how laborious it is to merely say “Hello World”...`}</p>
 
 
-    Hello world
+<pre ><code className="language-javaScript">{`public class HelloWorld {
+  public static void main(String[] args) {
+      System.out.println("Hello, World");
+  }
+
+// As opposed to JavaScript: console.log("Hello, World");
+`}
+  
+  
+  </code></pre>
 
 
 
-    </main>
+
+          <p>
+            {`
+            Unfortunately, at the time, I did not have any mentors in the tech space to encourage me to continue programming and thus I stopped for the time being. 
+            
+            Fast forward another 364 weeks: I am a sophomore at College of the Ozarks studying general engineering with minors in business administration and mathematics. It was common at this time for me to burn the proverbial “midnight oil” while solving exceedingly long calculus, physics, and engineering problems (P.S. it's wonderful to no longer be a sophomore). However, one of the highlights of my sophomore year was learning MatLab, which is a programming platform tailored specifically for engineers and scientists to solve and design analytical systems. My class was given a project to create an application with a visual interface that would allow the user to calculate and analyze beam deflection for structural analysis. This project reintroduced me into the world of software development and taught me the foundational principles of programming (i.e., loops, arrays, functions, etc.). My love for programming was reignited. 
+            
+            Throughout the next several years, I would go on to learn Python, JavaScript, CSS, and HTML. I dabbled a bit in data analysis and machining learning by creating a few Python scripts that could identify objects and do character recognition with the TensorFlow library. After a year of Python, I started learning frontend design using freeCodeCamp.org (big thanks to Quincy Larson by the way!). After going through the first three modules - Responsive Web Design, JavaScript Algorithms and Data Structures, and Front End Development Libraries - I had fallen in love with JavaScript and React. 
+            
+            As of writing this, I am now 1,174 weeks old and I am about to graduate from college. I love building and creating things, especially software and businesses that bring value to people's lives. My current goal is to work as a frontend developer, creating software that is both innovative and impacting.
+            `}
+          </p>
+        </div>
+
+        <div className="spacing">
+        <ContactForm />
+        </div>
+      </main>
+
+
+
+      
+    </Wrapper>
   );
 }
