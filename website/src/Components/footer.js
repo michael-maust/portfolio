@@ -11,15 +11,12 @@ import ResumeButton from './ResumeButton';
 const Wrapper = Styled.div`
 
 
-.navbar {
 
-    
-}
 
 .footer {
-
+        
         position: relative;
-        bottom: 0px;
+       
         width: 100%;
         height: auto;
         background-color: ${(props) => props.theme.colors.darkGray};

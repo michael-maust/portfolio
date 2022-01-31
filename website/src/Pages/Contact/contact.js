@@ -1,14 +1,19 @@
 import React from 'react';
 import Styled from 'styled-components';
 
+
+import ContactForm from './ContactForm';
+
+
+
 const Wrapper = Styled.div`
 
 body {
     background-color: red;
 }
 
-padding-top: 100px;
-font-weight: 200px;
+padding-top: 150px;
+margin-bottom: 0px;
 display: flex;
 justify-content: center;
 width: 100%;
@@ -23,16 +28,30 @@ h1 {
 }
 
 
+hr {
+  visibility: hidden;
+}
+
 
 
 `;
 
+
+
+
+
 const contact = () => {
+
+
+
+
   return (
     <Wrapper>
       <div>
-        <h1> This is the blog page.</h1>
+       
 
+        
+<ContactForm />
 
       </div>
     </Wrapper>

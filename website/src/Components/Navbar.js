@@ -1,19 +1,15 @@
 // Dependency Imports
 import React from "react";
-import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
+
 import Styled from "styled-components";
 
 //  File Imports
-import Home from "../Pages/Home/home";
-import About from "../Pages/About/about";
-import Blog from "../Pages/Blog/blog";
-import Portfolio from "../Pages/Portfolio/portfolio";
-import Contact from "../Pages/Contact/contact";
+
 import logo from "../media/logo.svg";
 import Menu from "./Menu";
 import searchIcon from "../media/searchIcon.svg";
 import Burger from "./Burger";
-import "../App.css";
+
 
 // Component Styling
 
@@ -114,7 +110,7 @@ const MenuStyle = Styled.div`
   }
 
 
-a:hover {
+a:hover:not(.active) {
   color: ${(props) => props.theme.colors.orange};
   transition: ease-in-out 500ms ;
 }
@@ -161,7 +157,7 @@ window.onscroll = function (e) {
 
 const Navbar = () => {
   return (
-    <Router>
+    
       <Wrapper>
         <div>
           <div className="navbarClass">
@@ -187,16 +183,10 @@ const Navbar = () => {
             </header>
           </div>
 
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/Blog" element={<Blog />} />
-            <Route exact path="/Portfolio" element={<Portfolio />} />
-            <Route exact path="/About" element={<About />} />
-            <Route exact path="/Contact" element={<Contact />} />
-          </Routes>
+          
         </div>
       </Wrapper>
-    </Router>
+    
   );
 };
 

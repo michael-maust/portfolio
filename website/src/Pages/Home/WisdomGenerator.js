@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 0px 30vh 0px;
+  /* padding: 0px 0px 30vh 0px; */
   width: 100%;
   height: auto;
 
@@ -20,7 +20,6 @@ const Wrapper = styled.div`
     width: max(50%, 250px);
     max-width: 300px;
     margin: 20px 20px 20px 20px;
-   
   }
 
   .topContainer {
@@ -131,6 +130,7 @@ const Wrapper = styled.div`
   }
 
   .newQuoteButton {
+    font-weight: 700;
     position: absolute;
     bottom: -26px;
     color: ${(props) => props.theme.colors.tan};
@@ -140,18 +140,17 @@ const Wrapper = styled.div`
     border: none;
     font-size: 1.2rem;
     cursor: pointer;
+    transition: ease-in-out 500ms;
 
     &:hover {
-      transform: scale(1.1);
-      transition: ease-in-out 500ms;
+      transform: scale(1.05);
+
       color: ${(props) => props.theme.colors.tan};
     }
   }
 `;
 
 function randomNumber() {
-  console.log("ran");
-
   var lastNum,
     max = quotes.length,
     random;
@@ -159,7 +158,6 @@ function randomNumber() {
   random = Math.floor(Math.random() * max);
 
   while (lastNum !== random) {
-    console.log(random);
     return random;
   }
 

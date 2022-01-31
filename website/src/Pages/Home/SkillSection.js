@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import skillsArray from "./SkillsArray";
-import InfoIcon from "../../media/InfoIcon.svg";
+import touchIcon from "../../media/touchIcon.svg";
 
 const Wrapper = styled.div`
   position: relative;
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 0px 0px 30vh 0px;
+  /* padding: 0px 0px 30vh 0px; */
 
   height: auto;
 
@@ -32,9 +32,9 @@ const Wrapper = styled.div`
     position: relative;
     color: ${(props) => props.theme.colors.tan};
     font-weight: bold;
-    font-size: calc(1.6rem + 0.8vw);
+    font-size: clamp(1.9rem, -0.875rem + 8.333vw, 2.8rem);
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 0px;
   }
 
@@ -69,11 +69,15 @@ const Wrapper = styled.div`
       transform: scale(1.05);
     }
 
-    .InfoIcon {
-      position: relative;
+    .touchIcon {
+      position: absolute;
       z-index: 500px;
       padding: 0px;
       margin: 5px 5px auto auto;
+      width: 25px;
+      bottom: 10px;
+      right: 10px;
+      
     }
   }
 
@@ -96,6 +100,7 @@ const Wrapper = styled.div`
     padding: 0px;
     color: ${(props) => props.theme.colors.orange};
     font-weight: bold;
+   
     font-size: 1.1rem;
   }
 
@@ -105,13 +110,29 @@ const Wrapper = styled.div`
     font-weight: bold;
     top: -15px;
     padding: 2px;
-    
   }
 
-  
+  hr {
+    background-color: ${(props) => props.theme.colors.charcoal};
+    border: none;
+    border-radius: 20px;
+    width: 200px;
+    height: 7px;
+    margin: 10px;
+  }
+
+  .description {
+    width: 80%;
+    max-width: 500px;
+
+    position: relative;
+    text-align: center;
+    font-size: ${(props) => props.theme.fontSizes.para};
+    color: ${(props) => props.theme.colors.tan};
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 `;
-
-
 
 const ModalStyle = styled.div`
   .experienceModal {
@@ -122,35 +143,30 @@ const ModalStyle = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
     width: clamp(240px, 90vw, 700px);
-    
   }
 
   .modalBackground {
-   
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
-   
   }
 
   .modalContainer {
     position: fixed;
     background: ${(props) => props.theme.colors.charcoal};
     box-shadow: ${(props) => props.theme.shadow.box};
-    
+
     height: auto;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     border-radius: 25px;
     padding: 20px 20px 40px 20px;
-    
-    
   }
 
   .toggleOffButton {
@@ -159,30 +175,23 @@ const ModalStyle = styled.div`
     bottom: 30px;
     fill: ${(props) => props.theme.colors.darkGray};
     cursor: pointer;
-    
 
-    &:hover{
+    &:hover {
       transform: scale(1.1);
     }
   }
 
-.rowFlex {
-  
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-
-}
-
-
+  .rowFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
   .modalSkillIcon {
     position: relative;
     height: clamp(40px, 40vw, 60px);
     width: auto;
     margin: 0px;
-   
   }
 
   .modalSkillDetails {
@@ -191,7 +200,6 @@ const ModalStyle = styled.div`
     justify-content: flex-start;
     position: relative;
     margin-left: 20px;
-    
   }
 
   .modalSkillName {
@@ -211,31 +219,16 @@ const ModalStyle = styled.div`
     margin: 0px;
     padding: 0px;
     top: -20px;
-    
   }
 
   .modalSkillDescription {
     position: relative;
     color: ${(props) => props.theme.colors.tan};
-    
+
     font-size: 1.4rem;
-    
-    
+
     top: -20px;
-
-    
   }
-
-
-
-
-
-
-
-
-
-
-
 `;
 
 const SkillSection = () => {
@@ -244,12 +237,20 @@ const SkillSection = () => {
     index: 0,
   });
 
+
+  //Disables Body Scroll when Modal is Active
+  if(toggleModal.toggle) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "scroll";
+  }
+
+
+
   const modalGenerator = (toggle, arrayIndex) => {
     setToggleModal({toggle: toggle, index: arrayIndex});
   };
 
-  
-  
   const renderSkills = skillsArray.map((skill) => (
     <div
       className="skillItem"
@@ -262,7 +263,7 @@ const SkillSection = () => {
         <p className="skillName">{skill.name}</p>
         <div className="skillExperience">{skill.experience}</div>
       </div>
-      <img className="InfoIcon" src={InfoIcon} alt="" />
+      <img className="touchIcon" src={touchIcon} alt="" />
     </div>
   ));
 
@@ -270,55 +271,61 @@ const SkillSection = () => {
     <div>
       <Wrapper>
         <div className="background">
-          <h1 className="title">EXPERIENCE</h1>
+          <h1 className="title">SKILLS</h1>
+
+          <hr />
+          <p className="description">
+            I am constantly learning new skills and technologies. Here are some
+            of the things that I have experience in:{" "}
+          </p>
+
           <div className="skillsContainer">{renderSkills}</div>
         </div>
-      
 
-      <ModalStyle toggleModal={toggleModal}>
-        <div className="experienceModal">
-          <div className="modalBackground" onClick={() => modalGenerator(false, 0)}></div>
+        <ModalStyle toggleModal={toggleModal}>
+          <div className="experienceModal">
+            <div
+              className="modalBackground"
+              onClick={() => modalGenerator(false, 0)}
+            ></div>
             <div className="modalContainer">
-
-
-            <svg className="toggleOffButton"
-                onClick={() => modalGenerator(false, 0)}xmlns="http://www.w3.org/2000/svg" width="30.008" height="30" viewBox="0 0 30.008 30"><path d="M29.845,26.289,40.562,15.571a2.511,2.511,0,0,0-3.552-3.552L26.293,22.737,15.575,12.019a2.511,2.511,0,1,0-3.552,3.552L22.741,26.289,12.024,37.006a2.511,2.511,0,0,0,3.552,3.552L26.293,29.84,37.011,40.558a2.511,2.511,0,0,0,3.552-3.552Z" transform="translate(-11.285 -11.289)"/></svg>
-
-
-
-              
+              <svg
+                className="toggleOffButton"
+                onClick={() => modalGenerator(false, 0)}
+                xmlns="http://www.w3.org/2000/svg"
+                width="30.008"
+                height="30"
+                viewBox="0 0 30.008 30"
+              >
+                <path
+                  d="M29.845,26.289,40.562,15.571a2.511,2.511,0,0,0-3.552-3.552L26.293,22.737,15.575,12.019a2.511,2.511,0,1,0-3.552,3.552L22.741,26.289,12.024,37.006a2.511,2.511,0,0,0,3.552,3.552L26.293,29.84,37.011,40.558a2.511,2.511,0,0,0,3.552-3.552Z"
+                  transform="translate(-11.285 -11.289)"
+                />
+              </svg>
 
               <container className="rowFlex">
-              
-              <img
-                className="modalSkillIcon"
-                src={skillsArray[toggleModal.index].icon}
-                alt=""
-              />
+                <img
+                  className="modalSkillIcon"
+                  src={skillsArray[toggleModal.index].icon}
+                  alt=""
+                />
 
-              <div className="modalSkillDetails">
-                <p className="modalSkillName">
-                  {skillsArray[toggleModal.index].name}
-                </p>
-                <div className="modalSkillExperience">
-                  {skillsArray[toggleModal.index].experience}
+                <div className="modalSkillDetails">
+                  <p className="modalSkillName">
+                    {skillsArray[toggleModal.index].name}
+                  </p>
+                  <div className="modalSkillExperience">
+                    {skillsArray[toggleModal.index].experience}
+                  </div>
                 </div>
+              </container>
 
-                
-
-                </div>
-                </container>
-
-
-                <p className="modalSkillDescription">
-                  {skillsArray[toggleModal.index].description}
-                </p>
-              
+              <p className="modalSkillDescription">
+                {skillsArray[toggleModal.index].description}
+              </p>
             </div>
-          
-        </div>
-      </ModalStyle>
-
+          </div>
+        </ModalStyle>
       </Wrapper>
     </div>
   );

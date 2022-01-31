@@ -47,7 +47,7 @@ const SocialMediaLinks = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="mediaLink"
-          href="https://github.com/Designerman717"
+          href="https://github.com/michael-maust"
         >
           <img className="GitHub" src={GitHub} alt="GitHub link icon"></img>
         </a>
