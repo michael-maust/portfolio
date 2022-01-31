@@ -117,17 +117,25 @@ const Wrapper = styled.div`
 }
 
 
+.codeContainer {
+
+  width: clamp(100px, 100%, 1000px);
+  overflow: hidden;
+}
+
+
+
+
+
 pre {
   padding: 40px 0px 40px 50px;
   margin: 20px 0px 20px 0px;
   background: ${(props) => props.theme.colors.darkGray};
   border-radius: 25px;
-  width: clamp(100px, 80%, 1000px);
-  
-  
-  
+  overflow: auto;
   
 
+  
   &:focus {
       outline: none;
     }
@@ -139,6 +147,8 @@ pre {
 code {
   overflow: auto;
   font-size: ${(props) => props.theme.fontSizes.para3};
+  overflow: scroll;
+  color: ${(props) => props.theme.colors.lightBlue};
 }
 
 
@@ -187,17 +197,16 @@ export default function AboutMe() {
 
           <p>{`Back when I was 624 weeks old (12 years for you normal folk), my mom bought me a Java programming book for my birthday. At the time, I was a big fan of Minecraft and had the idea of developing my own mods for the game.  However, that interest quickly dissipated after I realized how laborious it is to merely say “Hello World”...`}</p>
 
-
-<pre ><code className="language-javaScript">{`public class HelloWorld {
+<div className="codeContainer">
+<pre><code className="language-javaScript">{`public class HelloWorld {
   public static void main(String[] args) {
       System.out.println("Hello, World");
   }
 
 // As opposed to JavaScript: console.log("Hello, World");
 `}
-  
-  
   </code></pre>
+  </div>
 
 
 
