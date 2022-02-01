@@ -26,11 +26,12 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    transition: ease-in-out 500ms;
 
 
     &:hover {
-      transform: scale(1.1);
-      transition: ease-in-out 500ms;
+      transform: scale(1.05);
+      
       color: ${(props) => props.theme.colors.tan};
     }
   }
@@ -53,9 +54,9 @@ const ResumeButton = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://drive.google.com/file/d/1IfkSktkRyeXvZypM0DNy1iCBrxGoSvpa/view?usp=sharing"
+          href="https://drive.google.com/file/d/15GhfXmDOY2Yc39Wq35Beot2eAhs1PfIj/view?usp=sharing"
         >
-          <div className="resume">RESUME</div>
+          <div className="resume">DOWNLOAD RESUME</div>
         </a>
       </div>
     </Wrapper>
